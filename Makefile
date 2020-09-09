@@ -1,22 +1,22 @@
-SRC = main.c pars.c
+SRC = main.c pars.c cub3d.c maptrace.c engine.c onlymap.c enginesecond.c new_slide.c
 OBJ = $(SRC:.c=.o)
 NAME = cub3d
 CC = clang
 FLAG = -Wall -Wextra -Werror
-MLX = -L./minilibx_mms_20200219 -lmlx -framework OpenGL -framework AppKit -lm -Llib -lft -g
+MLX = -L./minilibx_mms_20200219 -lmlx -framework OpenGL -framework AppKit -lm -Llib -lft
 
 all: $(NAME)
 
 libft:
-	cd lib && make && cp libft.a ../
+	cd lib && make && make bonus && cp libft.a ../
 
 $(NAME): libft
-	$(CC) $(FLAG) $(SRC) $(MLX) $(LIBFT)
+	$(CC) -g $(FLAG) $(SRC) $(MLX) $(LIBFT)
 	cd minilibx_mms_20200219 && cp libmlx.dylib ../
 	cd lib && make
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -Ilib -c $< -o $@
+	$(CC) -g -Wall -Wextra -Werror -Imlx -Ilib -c $< -o $@
 
 clean:
 	/bin/rm -f $(OBJ)

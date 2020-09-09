@@ -3,6 +3,7 @@
 void	makeside(t_file *file)
 {
 	char **sprite;
+
 	sprite = ft_split(file->line, ' ');
 	if (ft_strnstr(sprite[0], "S", 2) != NULL)
 		file->sprite = ft_strdup(sprite[1]);
@@ -20,6 +21,7 @@ void	makeside(t_file *file)
 void	color(t_file *file)
 {
 	char **color;
+
 	color = ft_split((file->line + 1), ',');
 	file->color.r = ft_atoi(color[0]);
 	file->color.g = ft_atoi(color[1]);
@@ -29,15 +31,18 @@ void	color(t_file *file)
 void	win(t_file *file)
 {
 	char **win;
+
 	win = ft_split(file->line, ' ');
-	file->win.lenght = ft_atoi(win[1]);
-	file->win.width = ft_atoi(win[2]);
+	file->win.width = ft_atoi(win[1]);
+	file->win.height = ft_atoi(win[2]);
+	free(win);
 }
 
 void	timeforif(t_file *file)
 {
 	char **side;
 
+	file->line = ft_strtrim(file->line, " ");
 	side = ft_split(file->line, ' ');
 	if (*file->line == 'R')
 		win(file);
@@ -49,19 +54,26 @@ void	timeforif(t_file *file)
 	ft_strnstr(side[0], "EA", 2) != NULL ||
 	ft_strnstr(side[0], "S", 2) != NULL)
 		makeside(file);
-	
-	
+	free(side);
 }
 
 void	pars(t_file *file)
-{ 
-	file->line = ft_strtrim(file->line, " ");
-	timeforif(file);
-	printf("%i:%i\n", file->win.lenght, file->win.width);
-	printf("%i:%i:%i\n", file->color.r, file->color.g, file->color.b);
-	printf("%s\n", file->sides.west);
-	printf("%s\n", file->sides.south);
-	printf("%s\n", file->sides.north);
-	printf("%s\n", file->sides.east);
-	printf("%s\n", file->sprite);
+{
+	int i;
+	char *ptr;
+
+	i = ft_strlen(file->line);
+	ptr = ft_strnstr(file->line, "S", i);
+	if (ft_strnstr(file->line, "NO", i) == NULL ||
+	ft_strnstr(file->line, "SO", i) == NULL ||
+	ft_strnstr(file->line, "WE", i) == NULL ||
+	ft_strnstr(file->line, "EA", i) == NULL ||
+	ft_strnstr(file->line, "C", i) == NULL ||
+	ft_strnstr(file->line, "R", i) == NULL ||
+	ft_strnstr(file->line, "F", i) == NULL ||
+	ptr == NULL)
+		timeforif(file);
+	// printf("%s\n", file->line);
+	if (ft_strnstr(file->line, "1", 10))
+		maptrace(file);
 }
