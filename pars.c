@@ -23,9 +23,24 @@ void	color(t_file *file)
 	char **color;
 
 	color = ft_split((file->line + 1), ',');
-	file->color.r = ft_atoi(color[0]);
-	file->color.g = ft_atoi(color[1]);
-	file->color.b = ft_atoi(color[2]);
+	if (*file->line == 'F')
+	{
+		file->color.rf = ft_atoi(color[0]);
+		file->color.gf = ft_atoi(color[1]);
+		file->color.bf = ft_atoi(color[2]);
+	}
+	if (*file->line == 'C')
+	{
+		file->color.rc = ft_atoi(color[0]);
+		file->color.gc = ft_atoi(color[1]);
+		file->color.bc = ft_atoi(color[2]);
+	}
+	file->color.clrf = (file->color.rf << 16);
+	file->color.clrf = file->color.clrf | (file->color.gf << 8);
+	file->color.clrf = file->color.clrf | (file->color.bf);
+	file->color.clrc = (file->color.rc << 16);
+	file->color.clrc = file->color.clrc | (file->color.gc << 8);
+	file->color.clrc = file->color.clrc | (file->color.bc);
 }
 
 void	win(t_file *file)

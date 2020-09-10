@@ -37,9 +37,14 @@ typedef struct	s_sides {
 }				t_sides;
 
 typedef struct	s_color {
-	unsigned int r;
-	unsigned int g;
-	unsigned int b;
+	unsigned int	rf;
+	unsigned int	gf;
+	unsigned int	bf;
+	unsigned int	rc;
+	unsigned int	gc;
+	unsigned int	bc;
+	unsigned int	clrf;
+	unsigned int	clrc;
 }				t_color;
 
 typedef struct  s_data {
@@ -80,3 +85,4 @@ void	engine(t_file *file);
 void	onlymap(t_file *file);
 void	enginesecond(t_file *file);
 void	new_slide(t_file *file);
+int		keys(int key, t_file *file);

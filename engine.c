@@ -27,6 +27,10 @@ void	nextstepthird(t_file *file)
 		file->game.drawend = file->win.height - 1;
 	// if (file->game.side == 1)
 	// 	file->clr = (file->clr / 2);
+	for (int x = 0; x < file->game.drawstart; x++)
+		my_mlx_pixel_put(&file->img, file->ioooo, x, file->color.clrf);
+	for (int y = file->game.drawend; y < file->win.height; y++)
+		my_mlx_pixel_put(&file->img, file->ioooo, y, file->color.clrc);
 	for (; file->game.drawstart < file->game.drawend; file->game.drawstart++)
 		my_mlx_pixel_put(&file->img, file->ioooo, file->game.drawstart, file->clr);
 }
@@ -60,7 +64,7 @@ void	nextstep(t_file *file)
 		}
 		else
 			nextstepsecond(file);
-		if (file->map[file->game.mapy][file->game.mapx] == '1')
+		if (file->map[file->game.mapy][file->game.mapx] == '1' && file->map[file->game.mapy][file->game.mapx])
 			file->game.hit = 1;
 	}
 	nextstepthird(file);
