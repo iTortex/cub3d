@@ -32,9 +32,8 @@ void	ifsides(t_file *file, int y, int x)
 	}
 	if (file->map[y][x] == 'S')
 	{
-		file->game.posx = x;
-		file->game.posy = y;
-		file->game.player_an = -(M_PI / 2);
+		file->game.posx = x + 0.5;
+		file->game.posy = y + 0.5;
 		file->game.dirx = 0;
 		file->game.diry = -1;
 		file->game.planex = -1;
@@ -42,8 +41,8 @@ void	ifsides(t_file *file, int y, int x)
 	}
 	if (file->map[y][x] == 'W')
 	{
-		file->game.posx = x;
-		file->game.posy = y;
+		file->game.posx = x + 0.5;
+		file->game.posy = y + 0.5;
 		file->game.dirx = -1;
 		file->game.diry = 0;
 		file->game.planex = 0;
@@ -51,8 +50,8 @@ void	ifsides(t_file *file, int y, int x)
 	}
 	if (file->map[y][x] == 'E')
 	{
-		file->game.posx = x;
-		file->game.posy = y;
+		file->game.posx = x + 0.5;
+		file->game.posy = y + 0.5;
 		file->game.dirx = 1;
 		file->game.diry = 0;
 		file->game.planex = 0;

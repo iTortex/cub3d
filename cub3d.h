@@ -12,7 +12,6 @@ typedef struct	s_game {
 	double	camerax;
 	double	raydirx;
 	double	raydiry;
-	double	player_an;
 	int		mapx;
 	int		mapy;
 	double	sidedistx;
@@ -27,6 +26,14 @@ typedef struct	s_game {
 	int		stepy;
 	int		hit;
 	int		side;
+	int		texwidth;
+	int		texheight;
+	int		texnum;
+	double	wallx;
+	int		texx;
+	double	step;
+	double	texpos;
+	int		texy;
 }				t_game;
 
 typedef struct	s_sides {
