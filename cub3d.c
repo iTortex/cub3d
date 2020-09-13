@@ -59,19 +59,26 @@ void     cub3d(t_file *file)
 	// double jj = 0;
     // unsigned int color;
     // t_data img;
+	file->img.mlx = NULL;
+	file->img.mlx_win = NULL;
+	file->img.img = NULL;
 
-    file->game.texheight = 64;
-	file->game.texwidth = 64;
     file->clr = 0x00d0000f;
     file->img.mlx = mlx_init();
     file->img.mlx_win = mlx_new_window(file->img.mlx, file->win.width, file->win.height, "Ya rodilsa");
     file->img.img = mlx_new_image(file->img.mlx, file->win.width, file->win.height);
-	file->img.xpm = mlx_xpm_file_to_image(file->img.mlx, "./eagle.xpm", &file->game.texwidth, &file->game.texheight);
     file->img.data = (unsigned int *)mlx_get_data_addr(file->img.img, &file->img.bpp, &file->img.line_length, &file->img.endian);
-	// file->img.xpm = mlx_xpm_file_to_image(file->img.mlx, "./eagle.xpm", &file->game.texwidth, &file->game.texheight);
+	file->texn.img = mlx_xpm_file_to_image(file->img.mlx, "./jz.xpm", &file->game.texwidth, &file->game.texheight);
+	file->texn.data = (unsigned int *)mlx_get_data_addr(file->texn.img, &file->texn.bpp, &file->texn.line_length, &file->texn.endian);
+	file->texe.img = mlx_xpm_file_to_image(file->img.mlx, "./bluestone.xpm", &file->game.texwidth, &file->game.texheight);
+	file->texe.data = (unsigned int *)mlx_get_data_addr(file->texe.img, &file->texe.bpp, &file->texe.line_length, &file->texe.endian);
+	file->texw.img = mlx_xpm_file_to_image(file->img.mlx, "./colorstone.xpm", &file->game.texwidth, &file->game.texheight);
+	file->texw.data = (unsigned int *)mlx_get_data_addr(file->texw.img, &file->texw.bpp, &file->texw.line_length, &file->texw.endian);
+	file->texs.img = mlx_xpm_file_to_image(file->img.mlx, "./redbrick.xpm", &file->game.texwidth, &file->game.texheight);
+	file->texs.data = (unsigned int *)mlx_get_data_addr(file->texs.img, &file->texs.bpp, &file->texs.line_length, &file->texs.endian);
 	// mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
-	//engine(file);
-	//mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
+	engine(file);
+	mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
 	// make_map(file);
 	new_slide(file);
 	// img.xpm = mlx_xpm_file_to_image (img.mlx, "image.xpm", &x, &y);
@@ -111,5 +118,5 @@ void     cub3d(t_file *file)
     // mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
     // mlx_hook(file->img.mlx_win, 17, 0, closes, &file->img);
     
-	// mlx_loop(file->img.mlx);
+	mlx_loop(file->img.mlx);
 } 

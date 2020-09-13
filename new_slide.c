@@ -6,10 +6,10 @@ int		keys(int key, t_file *file)
 	{
 		mlx_clear_window(file->img.mlx, file->img.mlx_win);
 		mlx_new_image(file->img.mlx, file->win.width, file->win.height);
-		if (file->map[(int)(file->game.posx + file->game.dirx * 0.05)][(int)(file->game.posy)] != 1)
-			file->game.posx += file->game.dirx * 0.1;
-		if (file->map[(int)(file->game.posx)][(int)(file->game.posy + file->game.diry * 0.05)] != 1)
-			file->game.posy += file->game.diry * 0.1;
+		// if (file->map[(int)((file->game.posx + file->game.dirx * 0.1))][(int)((file->game.posy))] == '0')
+		file->game.posx += file->game.dirx * 0.1;
+		// if (file->map[(int)(file->game.posx)][(int)(file->game.posy + file->game.diry * 0.1)] == '0')
+		file->game.posy += file->game.diry * 0.1;
 		engine(file);
 		mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
 		mlx_loop(file->img.mlx);
@@ -18,9 +18,9 @@ int		keys(int key, t_file *file)
 	{
 		mlx_clear_window(file->img.mlx, file->img.mlx_win);
 		mlx_new_image(file->img.mlx, file->win.width, file->win.height);
-		if (file->map[(int)(file->game.posx - file->game.dirx * 0.05)][(int)(file->game.posy)] != 1)
+		if (file->map[(int)(file->game.posx - file->game.dirx * 0.1)][(int)(file->game.posy)] != '1')
 			file->game.posx -= file->game.dirx * 0.1;
-		if (file->map[(int)(file->game.posx)][(int)(file->game.posy - file->game.diry * 0.05)] != 1)
+		if (file->map[(int)(file->game.posx)][(int)(file->game.posy - file->game.diry * 0.1)] != '1')
 			file->game.posy -= file->game.diry * 0.1;
 		engine(file);
 		mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
@@ -30,9 +30,9 @@ int		keys(int key, t_file *file)
 	{
 		mlx_clear_window(file->img.mlx, file->img.mlx_win);
 		mlx_new_image(file->img.mlx, file->win.width, file->win.height);
-		if (file->map[(int)(file->game.posx - file->game.diry * 0.05)][(int)(file->game.posy)] != 1)
+		if (file->map[(int)(file->game.posx - file->game.diry * 0.1)][(int)(file->game.posy)] != '1')
 			file->game.posx -= file->game.diry * 0.1;
-		if (file->map[(int)(file->game.posx)][(int)(file->game.posy + file->game.dirx* 0.05)] != 1)
+		if (file->map[(int)(file->game.posx)][(int)(file->game.posy + file->game.dirx* 0.1)] != '1')
 			file->game.posy += file->game.dirx * 0.1;
 		engine(file);
 		mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
@@ -42,9 +42,9 @@ int		keys(int key, t_file *file)
 	{
 		mlx_clear_window(file->img.mlx, file->img.mlx_win);
 		mlx_new_image(file->img.mlx, file->win.width, file->win.height);
-		if (file->map[(int)(file->game.posx - file->game.diry * 0.05)][(int)(file->game.posy)] != 1)
+		if (file->map[(int)(file->game.posx - file->game.diry * 0.1)][(int)(file->game.posy)] != '1')
 			file->game.posx += file->game.diry * 0.1;
-		if (file->map[(int)(file->game.posx)][(int)(file->game.posy - file->game.dirx* 0.05)] != 1)
+		if (file->map[(int)(file->game.posx)][(int)(file->game.posy - file->game.dirx* 0.1)] != '1')
 			file->game.posy -= file->game.dirx * 0.1;
 		engine(file);
 		mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);

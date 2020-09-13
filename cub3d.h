@@ -28,7 +28,7 @@ typedef struct	s_game {
 	int		side;
 	int		texwidth;
 	int		texheight;
-	int		texnum;
+	int	texnum;
 	double	wallx;
 	int		texx;
 	double	step;
@@ -54,12 +54,12 @@ typedef struct	s_color {
 	unsigned int	clrc;
 }				t_color;
 
+
 typedef struct  s_data {
         void    *mlx;
         void    *mlx_win;
         void    *img;
         void   *data;
-		void	*xpm;
         int     bpp;
         int     line_length;
         int     endian;
@@ -77,6 +77,10 @@ typedef	struct		s_file {
 	t_list			*first;
 	t_game			game;
 	t_img			img;
+	t_img			texn;
+	t_img			texe;
+	t_img			texw;
+	t_img			texs;
 	int				ioooo;
 	unsigned int	clr;
 	char			*sprite;

@@ -10,7 +10,6 @@ static void	make_map(t_file *file)
 	file->map = ft_calloc(i + 1, sizeof(char **));
 	while (j != i)
 	{
-		// printf("%s\n", file->first->content);
 		file->map[j] = ft_strdup(file->first->content);
 		ft_bzero(file->first->content, ft_strlen(file->first->content));
 		free(file->first->content);
