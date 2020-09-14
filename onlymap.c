@@ -56,13 +56,29 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.planex = 0;
 		file->game.planey = 1;
 	}
+	if (file->map[y][x] == '2')
+		file->spritesum += 1;
+}
+
+void	ifsprite(t_file *file, int y, int x)
+{
+	int i;
+
+	i = 0;
+	if (file->map[y][x] == '2')
+	{
+		file->game.spriteorder[i] = i;
+		file->game.sx[i] = x;
+		file->game.sy[i] = y;
+	}
 }
 
 void	onlymap(t_file *file)
 {
 	int x;
 	int y;
-
+	
+	file->spritesum = 0;
 	x = 0;
 	y = 0;
 	make_map(file);
@@ -74,6 +90,25 @@ void	onlymap(t_file *file)
 			while (file->map[y][x])
 			{
 				ifsides(file, y, x);
+				x++;
+			}
+			y++;
+		}
+	}
+	file->game.spriteorder = ft_calloc(file->spritesum, sizeof(int));
+	file->game.sx = ft_calloc(file->spritesum, sizeof(int));
+	file->game.sy = ft_calloc(file->spritesum, sizeof(int));
+	file->game.spritedistance = ft_calloc(file->spritesum, sizeof(int));
+	x = 0;
+	y = 0;
+	if (file->map[y][x])
+	{
+		while (file->map[y])
+		{
+			x = 0;
+			while (file->map[y][x])
+			{
+				ifsprite(file, y, x);
 				x++;
 			}
 			y++;

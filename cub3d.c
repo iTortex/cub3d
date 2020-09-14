@@ -68,7 +68,7 @@ void     cub3d(t_file *file)
     file->img.mlx_win = mlx_new_window(file->img.mlx, file->win.width, file->win.height, "Ya rodilsa");
     file->img.img = mlx_new_image(file->img.mlx, file->win.width, file->win.height);
     file->img.data = (unsigned int *)mlx_get_data_addr(file->img.img, &file->img.bpp, &file->img.line_length, &file->img.endian);
-	file->texn.img = mlx_xpm_file_to_image(file->img.mlx, "./jz.xpm", &file->game.texwidth, &file->game.texheight);
+	file->texn.img = mlx_xpm_file_to_image(file->img.mlx, "./eagle.xpm", &file->game.texwidth, &file->game.texheight);
 	file->texn.data = (unsigned int *)mlx_get_data_addr(file->texn.img, &file->texn.bpp, &file->texn.line_length, &file->texn.endian);
 	file->texe.img = mlx_xpm_file_to_image(file->img.mlx, "./bluestone.xpm", &file->game.texwidth, &file->game.texheight);
 	file->texe.data = (unsigned int *)mlx_get_data_addr(file->texe.img, &file->texe.bpp, &file->texe.line_length, &file->texe.endian);
@@ -76,6 +76,8 @@ void     cub3d(t_file *file)
 	file->texw.data = (unsigned int *)mlx_get_data_addr(file->texw.img, &file->texw.bpp, &file->texw.line_length, &file->texw.endian);
 	file->texs.img = mlx_xpm_file_to_image(file->img.mlx, "./redbrick.xpm", &file->game.texwidth, &file->game.texheight);
 	file->texs.data = (unsigned int *)mlx_get_data_addr(file->texs.img, &file->texs.bpp, &file->texs.line_length, &file->texs.endian);
+	file->sprites.img = mlx_xpm_file_to_image(file->img.mlx, "./barrel.xpm", &file->game.texwidth, &file->game.texheight);
+	file->sprites.data = (unsigned int *)mlx_get_data_addr(file->sprites.img, &file->sprites.bpp, &file->texs.line_length, &file->sprites.endian);
 	// mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
 	engine(file);
 	mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);

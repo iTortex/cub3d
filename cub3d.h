@@ -28,12 +28,31 @@ typedef struct	s_game {
 	int		side;
 	int		texwidth;
 	int		texheight;
-	int	texnum;
+	int		texnum;
 	double	wallx;
 	int		texx;
 	double	step;
 	double	texpos;
 	int		texy;
+	int		*sx;
+	int		*sy;
+	double	*zbuffer;
+	int		*spriteorder;
+	double	*spritedistance;
+	double	spritex;
+	double	spritey;
+	double	invdet;
+	double	transformx;
+	double	transformy;
+	int		spritescreenx;
+	int		vmovescreen;
+	int		spriteheight;
+	int		drawstarty;
+	int		drawendy;
+	int		spritewidth;
+	int		drawstartx;
+	int		drawendx;
+	int		d;
 }				t_game;
 
 typedef struct	s_sides {
@@ -81,6 +100,8 @@ typedef	struct		s_file {
 	t_img			texe;
 	t_img			texw;
 	t_img			texs;
+	t_img			sprites;
+	int	spritesum;
 	int				ioooo;
 	unsigned int	clr;
 	char			*sprite;
