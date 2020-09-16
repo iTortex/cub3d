@@ -60,24 +60,23 @@ void	ifsides(t_file *file, int y, int x)
 		file->spritesum += 1;
 }
 
-void	ifsprite(t_file *file, int y, int x)
-{
-	int i;
-
-	i = 0;
-	if (file->map[y][x] == '2')
-	{
-		file->game.spriteorder[i] = i;
-		file->game.sx[i] = x;
-		file->game.sy[i] = y;
-	}
-}
+// void	ifsprite(t_file *file, int y, int x, int i)
+// {
+// 	if (file->map[y][x] == '2')
+// 	{
+// 		file->game.spriteorder[i] = i;
+// 		file->game.sx[i] = x;
+// 		file->game.sy[i] = y;
+// 	}
+// }
 
 void	onlymap(t_file *file)
 {
 	int x;
 	int y;
-	
+	int i;
+
+	i = 0;
 	file->spritesum = 0;
 	x = 0;
 	y = 0;
@@ -108,7 +107,13 @@ void	onlymap(t_file *file)
 			x = 0;
 			while (file->map[y][x])
 			{
-				ifsprite(file, y, x);
+				if (file->map[y][x] == '2')
+				{
+					file->game.spriteorder[i] = i;
+					file->game.sx[i] = x;
+					file->game.sy[i] = y;
+					i++;
+				}
 				x++;
 			}
 			y++;

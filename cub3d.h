@@ -101,7 +101,7 @@ typedef	struct		s_file {
 	t_img			texw;
 	t_img			texs;
 	t_img			sprites;
-	int	spritesum;
+	int				spritesum;
 	int				ioooo;
 	unsigned int	clr;
 	char			*sprite;
@@ -118,3 +118,5 @@ void	onlymap(t_file *file);
 void	enginesecond(t_file *file);
 void	new_slide(t_file *file);
 int		keys(int key, t_file *file);
+int		wasd(int key, t_file *file);
+void	turn(int key, t_file *file);

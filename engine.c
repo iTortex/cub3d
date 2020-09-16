@@ -44,50 +44,10 @@ void	nextstepthird(t_file *file)
 		file->game.texx = file->game.texwidth - file->game.texx - 1;
 	file->game.step = 1.0 * file->game.texheight / file->game.lineheight;
 	file->game.texpos = (file->game.drawstart - file->win.height / 2 + file->game.lineheight / 2) * file->game.step;
-
-	
 	for (int x = 0; x < file->game.drawstart; x++)
 		my_mlx_pixel_put(&file->img, file->ioooo, x, file->color.clrf);
 	for (int y = file->game.drawend; y < file->win.height; y++)
 		my_mlx_pixel_put(&file->img, file->ioooo, y, file->color.clrc);
-	file->game.zbuffer[file->ioooo] = file->game.perpwalldist;
-	// file->game.spritedistance = ((file->game.posx - file->game.sx) * (file->game.posx - file->game.sx) + (file->game.posy - file->game.sy) * (file->game.posy - file->game.sy));
-	// file->game.spritex = file->game.sx - file->game.posx;
-	// file->game.spritey = file->game.sy - file->game.posy;
-	// file->game.invdet = 1.0 / (file->game.planex * file->game.diry - file->game.dirx * file->game.planey);
-	// file->game.transformx = file->game.invdet * (file->game.diry * file->game.spritex - file->game.dirx * file->game.spritey);
-	// file->game.transformy = file->game.invdet * (-file->game.planey * file->game.spritex + file->game.planex * file->game.spritey);
-	// file->game.spritescreenx = (int)((file->win.width / 2) * (1 + file->game.transformx / file->game.transformy));
-	// file->game.vmovescreen = (int)(0.0 / file->game.transformy);
-	// file->game.spriteheight = fabs((file->win.height / file->game.transformy));
-	// file->game.drawstarty = -file->game.spriteheight / 2 + file->win.height / 2 + file->game.vmovescreen;
-	// if (file->game.drawstarty < 0)
-	// 	file->game.drawstarty = 0;
-	// file->game.drawendy = file->game.spriteheight / 2 + file->win.height / 2 + file->game.vmovescreen;
-	// if (file->game.drawendy >= file->win.height)
-	// 	file->game.drawendy = file->win.height - 1;
-	// file->game.spritewidth = fabs((file->win.height / file->game.transformy) / 1);
-	// file->game.drawstartx = -file->game.spritewidth / 2 + file->game.spritescreenx;
-	// if (file->game.drawstartx < 0)
-	// 	file->game.drawstartx = 0;
-	// file->game.drawendx = file->game.spritewidth / 2 + file->game.spritescreenx;
-	// if (file->game.drawendx >= file->win.width)
-	// 	file->game.drawendx = file->win.width - 1;
-	// for (int stripe = file->game.drawstartx; stripe < file->game.drawendx; stripe++)
-	// {
-	// 	file->game.texx = (int)(256 * (stripe - (-file->game.spritewidth / 2 + file->game.spritescreenx)) * file->game.texwidth / file->game.spritewidth) / 256;
-	// 	if (file->game.transformy > 0 && stripe > 0 && stripe < file->win.width && file->game.transformy < file->game.zbuffer)
-	// 	{
-	// 		for (int yy = file->game.drawstarty; yy < file->game.drawendy; yy++)
-	// 		{
-	// 			file->game.d = (yy - file->game.vmovescreen) * 256 - file->win.height * 128 + file->game.spriteheight * 128;
-	// 			file->game.texy = ((file->game.d * file->game.texheight) / file->game.spriteheight) / 256;
-	// 			file->clr = my_mlx_pixel_take(&file->sprites, file->game.texx, file->game.texy);
-	// 			if ((file->clr & 0x00FFFFFF) != 0)
-	// 				my_mlx_pixel_put(&file->img, file->ioooo, file->game.drawstartx, file->clr);
-	// 		}
-	// 	}
-	// }
 	for (; file->game.drawstart < file->game.drawend; file->game.drawstart++)
 	{
 		file->game.texy = (int)file->game.texpos & (file->game.texheight - 1);
@@ -100,10 +60,9 @@ void	nextstepthird(t_file *file)
 			file->clr = my_mlx_pixel_take(&file->texs, file->game.texx, file->game.texy);
 		else if (file->game.side == 1 && file->game.raydiry >= 0)
 			file->clr = my_mlx_pixel_take(&file->texe, file->game.texx, file->game.texy);
-		// file->clr = my_mlx_pixel_take(&file->texf, file->game.texx, file->game.texy); // raskidivayu vverx
 		my_mlx_pixel_put(&file->img, file->ioooo, file->game.drawstart, file->clr);
 	}
-		//my_mlx_pixel_put(&file->img, file->ioooo, file->game.drawstart, file->clr);
+	file->game.zbuffer[file->ioooo] = file->game.perpwalldist;
 }
 
 void	nextstepsecond(t_file *file)
@@ -135,7 +94,7 @@ void	nextstep(t_file *file)
 		}
 		else
 			nextstepsecond(file);
-		if (file->map[file->game.mapy][file->game.mapx] == '1' && file->map[file->game.mapy][file->game.mapx])
+		if (file->map[file->game.mapx][file->game.mapy] == '1')
 			file->game.hit = 1;
 	}
 	nextstepthird(file);
@@ -150,8 +109,8 @@ void	engine(t_file *file)
 		file->game.camerax = 2 * file->ioooo / (double)file->win.width - 1;
 		file->game.raydirx = file->game.dirx + file->game.planex * file->game.camerax;
 		file->game.raydiry = file->game.diry + file->game.planey * file->game.camerax;
-		file->game.mapx = (int)file->game.posx;
 		file->game.mapy = (int)file->game.posy;
+		file->game.mapx = (int)file->game.posx;
 		file->game.deltadistx = fabs(1 / file->game.raydirx);
 		file->game.deltadisty = fabs(1 / file->game.raydiry);
 		file->game.hit = 0;
@@ -181,14 +140,14 @@ void	engine(t_file *file)
 		file->game.transformx = file->game.invdet * (file->game.diry * file->game.spritex - file->game.dirx * file->game.spritey);
 		file->game.transformy = file->game.invdet * (-file->game.planey * file->game.spritex + file->game.planex * file->game.spritey);
 		file->game.spritescreenx = (int)((file->win.width / 2) * (1 + file->game.transformx / file->game.transformy));
-		file->game.spriteheight = fabs((file->win.height / file->game.transformy));
+		file->game.spriteheight = abs((int)(file->win.height / file->game.transformy));
 		file->game.drawstarty = -file->game.spriteheight / 2 + file->win.height / 2;
 		if (file->game.drawstarty < 0)
 			file->game.drawstarty = 0;
 		file->game.drawendy = file->game.spriteheight / 2 + file->win.height / 2;
 		if (file->game.drawendy >= file->win.height)
 			file->game.drawendy = file->win.height - 1;
-		file->game.spritewidth = fabs((file->win.height / file->game.transformy) / 1);
+		file->game.spritewidth = abs((int)(file->win.height / file->game.transformy));
 		file->game.drawstartx = -file->game.spritewidth / 2 + file->game.spritescreenx;
 		if (file->game.drawstartx < 0)
 			file->game.drawstartx = 0;
@@ -202,7 +161,7 @@ void	engine(t_file *file)
 			{
 				for (int yy = file->game.drawstarty; yy < file->game.drawendy; yy++)
 				{
-					file->game.d = yy * 256 - file->win.height * 128 + file->game.spriteheight * 128;
+					file->game.d = (yy) * 256 - file->win.height * 128 + file->game.spriteheight * 128;
 					file->game.texy = ((file->game.d * file->game.texheight) / file->game.spriteheight) / 256;
 					file->clr = my_mlx_pixel_take(&file->sprites, file->game.texx, file->game.texy);
 					if ((file->clr & 0x00FFFFFF) != 0)

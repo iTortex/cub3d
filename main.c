@@ -12,17 +12,17 @@ int	main(void)
 	while (get_next_line(file.fd, &file.line) > 0)
 	{
 		pars(&file);
-	}
+	} 
 	onlymap(&file);
 	cub3d(&file);
-	printf("%i:%i\n", file.win.width, file.win.height);
+	// printf("%i:%i\n", file.win.width, file.win.height);
 	// printf("%i:%i:%i\n", file.color.r, file.color.g, file.color.b);
 	// printf("%i\n", 'w');
 	// printf("%s\n", file.sides.west);
 	// printf("%s\n", file.sides.south);
 	// printf("%s\n", file.sides.north);
 	// printf("%s\n", file.sides.east);
-	// printf("%s\n", file.sprite);
+	printf("%s\n", file.map[4]);
 	// printf("%f\n", file.game.posx);
 	// printf("%f\n", file.game.posy);
 	// printf("%f\n", file.game.dirx);

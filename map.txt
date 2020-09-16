@@ -1,15 +1,14 @@
-   R 1920  1080
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-S ./path_to_the_sprite_texture
+   R 1910  1080
+NO ./bluestone.xpm
+SO ./colorstone.xpm
+WE ./jz.xpm
+EA ./eagle.xpm
+S ./barrel.xpm
 F 50,155,0
 C 100,0,155
-11111
-10001
-12221
-12221
-10N01
-11111
-
+1111111
+100N001
+1002001
+1002001
+1111111
+q

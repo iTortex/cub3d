@@ -1,4 +1,4 @@
-SRC = main.c pars.c cub3d.c maptrace.c engine.c onlymap.c new_slide.c
+SRC = main.c pars.c cub3d.c maptrace.c engine.c onlymap.c new_slide.c wasd.c turn.c
 OBJ = $(SRC:.c=.o)
 NAME = cub3d
 CC = clang
