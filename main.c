@@ -1,18 +1,27 @@
 #include "cub3d.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	// const char *flgs;
-	// const char *map;
 	t_file	file;
+	char *check;
 
+	if (argc != 2)
+		return (0);
+	check = ft_substr(argv[1], ft_strlen(argv[1]) - 4, ft_strlen(argv[1]));
+	if (ft_strnstr(check, ".cub", ft_strlen(argv[1])) == NULL)
+	{
+		write(2, "INVALID FILE\n", 13);
+		free(check);
+		return (0);
+	}
 	file.first = NULL;
-	if (!(file.fd = open("map.txt", O_RDONLY)))
+	if (!(file.fd = open(argv[1], O_RDONLY)))
 		return (0);
 	while (get_next_line(file.fd, &file.line) > 0)
 	{
 		pars(&file);
-	} 
+	}
+	maptrace(&file);
 	onlymap(&file);
 	cub3d(&file);
 	// printf("%i:%i\n", file.win.width, file.win.height);

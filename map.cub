@@ -1,0 +1,13 @@
+R 1080 720
+NO ./bluestone.xpm
+SO ./colorstone.xpm
+WE ./redbrick.xpm
+EA ./eagle.xpm
+S ./greenlight.xpm
+F 155,155,155
+C 100,0,155
+1111111111111111111111111
+10000001
+10000001
+1N000001
+11111111

@@ -88,7 +88,7 @@ void	pars(t_file *file)
 	ft_strnstr(file->line, "F", i) == NULL ||
 	ptr == NULL)
 		timeforif(file);
-	// printf("%s\n", file->line);
+	// // printf("%s\n", file->line);
 	if (ft_strnstr(file->line, "1", 1))
 		maptrace(file);
 }

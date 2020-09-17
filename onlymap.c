@@ -22,12 +22,13 @@ void	ifsides(t_file *file, int y, int x)
 {
 	if (file->map[y][x] == 'N')
 	{
-		file->game.posx = x + 0.5;
-		file->game.posy = y + 0.5;
+		file->game.posx = y + 0.5;
+		file->game.posy = x + 0.5;
 		file->game.dirx = 0;
 		file->game.diry = 1;
 		file->game.planex = 1;
 		file->game.planey = 0;
+		file->map[y][x] = '0';
 	}
 	if (file->map[y][x] == 'S')
 	{
@@ -95,8 +96,8 @@ void	onlymap(t_file *file)
 		}
 	}
 	file->game.spriteorder = ft_calloc(file->spritesum, sizeof(int));
-	file->game.sx = ft_calloc(file->spritesum, sizeof(int));
-	file->game.sy = ft_calloc(file->spritesum, sizeof(int));
+	file->game.sx = ft_calloc(file->spritesum, sizeof(double));
+	file->game.sy = ft_calloc(file->spritesum, sizeof(double));
 	file->game.spritedistance = ft_calloc(file->spritesum, sizeof(int));
 	x = 0;
 	y = 0;
@@ -110,8 +111,8 @@ void	onlymap(t_file *file)
 				if (file->map[y][x] == '2')
 				{
 					file->game.spriteorder[i] = i;
-					file->game.sx[i] = x;
-					file->game.sy[i] = y;
+					file->game.sx[i] = y + 0.5;
+					file->game.sy[i] = x + 0.5;
 					i++;
 				}
 				x++;
