@@ -73,6 +73,8 @@ typedef struct	s_color {
 	unsigned int	bc;
 	unsigned int	clrf;
 	unsigned int	clrc;
+	unsigned int 	chc;
+	unsigned int	chf;
 }				t_color;
 
 
@@ -125,3 +127,6 @@ void	turn(int key, t_file *file);
 void	draw(t_file *file);
 void	draw_sprite(t_file *file);
 void	sprite_sort(t_file *file);
+void	makeside(t_file *file);
+void 	get_color(t_file *file);
+void	res_error(char **win);
