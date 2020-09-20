@@ -30,7 +30,7 @@ void	init(t_file *file)
 	file->sides.west = NULL;
 	file->color.chc = 0;
 	file->color.chf = 0;
-
+	file->sprite = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -56,8 +56,11 @@ int	main(int argc, char **argv)
 		pars(&file);
 	}
 	check_res(&file);
+	look_for_map(&file);
 	maptrace(&file);
 	onlymap(&file);
+	// printf("%s\n", file.map[1]);
+	flood_fill(&file);
 	cub3d(&file);
 	// printf("%i:%i\n", file.win.width, file.win.height);
 	// printf("%i:%i:%i\n", file.color.r, file.color.g, file.color.b);
@@ -66,7 +69,7 @@ int	main(int argc, char **argv)
 	// printf("%s\n", file.sides.south);
 	// printf("%s\n", file.sides.north);
 	// printf("%s\n", file.sides.east);
-	printf("%s\n", file.map[4]);
+	// printf("%s\n", file.map[4]);
 	// printf("%f\n", file.game.posx);
 	// printf("%f\n", file.game.posy);
 	// printf("%f\n", file.game.dirx);

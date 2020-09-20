@@ -130,3 +130,5 @@ void	sprite_sort(t_file *file);
 void	makeside(t_file *file);
 void 	get_color(t_file *file);
 void	res_error(char **win);
+void	look_for_map(t_file *file);
+int		flood_fill(t_file *file);

@@ -1,25 +1,26 @@
 #include "cub3d.h"
 
+void	res_er(void)
+{
+	write(2, "RESLUTION ERROR\n", 16);
+	exit(0);
+}
 
 void	win(t_file *file)
 {
 	char **win;
 
+	if (file->win.width != 0 || file->win.height != 0)
+		res_er();
 	win = ft_split(file->line, ' ');
 	if (ft_strlen(win[0]) > 1)
-	{
-		write(2, "RESLUTION ERROR\n", 16);
-		exit(0);
-	}
+		res_er();
 	res_error(win);
 	file->win.width = ft_atoi(win[1]);
 	file->win.height = ft_atoi(win[2]);
 	free(win);
 	if (file->win.width < 1 || file->win.height < 1)
-	{
-		write(2, "RESLUTION ERROR\n", 16);
-		exit(0);
-	}
+		res_er();
 	if (file->win.height > 1080)
 		file->win.height = 1080;
 	if (file->win.width > 1920)
@@ -40,7 +41,7 @@ void	timeforif(t_file *file)
 	ft_strnstr(side[0], "SO", 2) != NULL ||
 	ft_strnstr(side[0], "WE", 2) != NULL ||
 	ft_strnstr(side[0], "EA", 2) != NULL ||
-	ft_strnstr(side[0], "S", 2) != NULL)
+	ft_strnstr(side[0], "S", 1) != NULL)
 		makeside(file);
 	free(side);
 }
@@ -48,21 +49,21 @@ void	timeforif(t_file *file)
 void	pars(t_file *file)
 {
 	int i;
-	char *ptr;
+	// char *ptr;
 
 	i = ft_strlen(file->line);
 	if (i == 0)
 		return ;
-	ptr = ft_strnstr(file->line, "S", i);
-	if (ft_strnstr(file->line, "NO", i) == NULL ||
-	ft_strnstr(file->line, "SO", i) == NULL ||
-	ft_strnstr(file->line, "WE", i) == NULL ||
-	ft_strnstr(file->line, "EA", i) == NULL ||
-	ft_strnstr(file->line, "C", i) == NULL ||
-	ft_strnstr(file->line, "R", i) == NULL ||
-	ft_strnstr(file->line, "F", i) == NULL ||
-	ptr == NULL)
+	// ptr = ft_strnstr(file->line, "S", i);
+	if (ft_strnstr(file->line, "NO", i) != NULL ||
+	ft_strnstr(file->line, "SO", i) != NULL ||
+	ft_strnstr(file->line, "WE", i) != NULL ||
+	ft_strnstr(file->line, "EA", i) != NULL ||
+	ft_strnstr(file->line, "C", i) != NULL ||
+	ft_strnstr(file->line, "R", i) != NULL ||
+	ft_strnstr(file->line, "F", i) != NULL ||
+	ft_strnstr(file->line, "S", i) != NULL)
 		timeforif(file);
-	if (ft_strnstr(file->line, "1", 1))
-		maptrace(file);
+	else
+		look_for_map(file);
 }

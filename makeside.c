@@ -8,7 +8,7 @@ void	side_error(void)
 
 char *checkside(char **texture, char *side)
 {
-	if (ft_strlen(texture[0]) == 2)
+	if (ft_strlen(texture[0]) == 2 && side == NULL)
 		return (side = ft_strdup(texture[1]));
 	else
 		side_error();
@@ -27,8 +27,10 @@ void	makeside(t_file *file)
 		i++;
 	if (i != 2)
 		side_error();
-	if (ft_strnstr(textures[0], "S", 2) != NULL)
+	if (ft_strnstr(textures[0], "S", 1) != NULL)
 	{
+		if (file->sprite != NULL)
+			side_error();
 		if (ft_strlen(textures[0]) == 1)
 			file->sprite = ft_strdup(textures[1]);
 		if (ft_strlen(textures[0]) == 2 && textures[0][1] != 'O')

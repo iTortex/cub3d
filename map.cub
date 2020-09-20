@@ -1,21 +1,13 @@
-    R 1080 720  
-
-      NO ./BLUESTONE.xpm
-
-  SO ./colorstone.xpm
-
- WE ./redbrick.xpm
-
-S ./greenlight.xpm
-
-C     30, 30, 30
-
-F 30,155,155
-
+R 1920 1080
+NO ./bluestone.xpm
+SO ./redbrick.xpm
+WE ./jz.xpm
 EA ./eagle.xpm
-
-1111111111111
-1002200000001
-1002200111111
-1N022001
-11111111
+S ./greenlight.xpm
+F 220,100,255
+C 225,255,100
+11111
+1W001
+10001
+10001
+11111

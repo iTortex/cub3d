@@ -3,18 +3,22 @@
 static void	make_map(t_file *file)
 {
 	int i;
+	int x;
 	int j;
 
-	j = 0;
+	j = 1;
+	x = 0;
 	i = ft_lstsize(file->first);
-	file->map = ft_calloc(i + 1, sizeof(char **));
+	file->map = ft_calloc(i, sizeof(char **));
 	while (j != i)
 	{
-		file->map[j] = ft_strdup(file->first->content);
+		file->map[x] = ft_strdup(file->first->content);
+		printf("%s\n", file->map[x]);
 		ft_bzero(file->first->content, ft_strlen(file->first->content));
 		free(file->first->content);
 		file->first = file->first->next;
 		j++;
+		x++;
 	}
 }
 
@@ -24,29 +28,31 @@ void	ifsides(t_file *file, int y, int x)
 	{
 		file->game.posx = y + 0.5;
 		file->game.posy = x + 0.5;
-		file->game.dirx = 0;
-		file->game.diry = 1;
-		file->game.planex = 1;
-		file->game.planey = 0;
+		file->game.dirx = -1;
+		file->game.diry = 0;
+		file->game.planex = 0;
+		file->game.planey = 1;
 		file->map[y][x] = '0';
 	}
+	// printf("%c\n", file->map[y][x]);
 	if (file->map[y][x] == 'S')
 	{
-		file->game.posx = x + 0.5;
-		file->game.posy = y + 0.5;
+		file->game.posx = y + 0.5;
+		file->game.posy = x + 0.5;
 		file->game.dirx = 0;
 		file->game.diry = -1;
 		file->game.planex = -1;
 		file->game.planey = 0;
+		// file->map[y][x] = '0';
 	}
 	if (file->map[y][x] == 'W')
 	{
-		file->game.posx = x + 0.5;
-		file->game.posy = y + 0.5;
-		file->game.dirx = -1;
-		file->game.diry = 0;
-		file->game.planex = 0;
-		file->game.planey = -1;
+		file->game.posx = y + 0.5;
+		file->game.posy = x + 0.5;
+		file->game.dirx = 0;
+		file->game.diry = -1;
+		file->game.planex = -1;
+		file->game.planey = 0;
 	}
 	if (file->map[y][x] == 'E')
 	{

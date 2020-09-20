@@ -17,20 +17,22 @@ void	color_size(t_file *file)
 
 void	put_color(t_file *file, char **color)
 {
-	if (*file->line == 'F')
+	if (*file->line == 'F' && file->color.chf == 0)
 	{
 		file->color.chf = 1;
 		file->color.rf = ft_atoi(color[0]);
 		file->color.gf = ft_atoi(color[1]);
 		file->color.bf = ft_atoi(color[2]);
 	}
-	if (*file->line == 'C')
+	else if (*file->line == 'C' && file->color.chc == 0)
 	{
 		file->color.chc = 1;
 		file->color.rc = ft_atoi(color[0]);
 		file->color.gc = ft_atoi(color[1]);
 		file->color.bc = ft_atoi(color[2]);
 	}
+	else
+		write_error();
 	color_size(file);
 	file->color.clrf = (file->color.rf << 16);
 	file->color.clrf = file->color.clrf | (file->color.gf << 8);
@@ -74,34 +76,15 @@ void 	get_color(t_file *file)
 	int i;
 
 	i = 1;
+	// if (file->color.chc != 0 || file->color.chf != 0)
+	// 	write_error();
 	if ((file->line[0] == 'F' || file->line[0] == 'C') && 
 	file->line[1] != ' ')
-	{
-		write(2, "COLOR ERROR\n", 11);
-		exit(0);
-	}
+		write_error();
 	while (file->line[i] > '9' || file->line[i] < '0')
 		i++;
 	ptr = (&((char *)file->line)[i]);
 	color = ft_split(ptr, ',');
 	color_error(color);
 	put_color(file, color);
-	// if (*file->line == 'F')
-	// {
-	// 	file->color.rf = ft_atoi(color[0]);
-	// 	file->color.gf = ft_atoi(color[1]);
-	// 	file->color.bf = ft_atoi(color[2]);
-	// }
-	// if (*file->line == 'C')
-	// {
-	// 	file->color.rc = ft_atoi(color[0]);
-	// 	file->color.gc = ft_atoi(color[1]);
-	// 	file->color.bc = ft_atoi(color[2]);
-	// }
-	// file->color.clrf = (file->color.rf << 16);
-	// file->color.clrf = file->color.clrf | (file->color.gf << 8);
-	// file->color.clrf = file->color.clrf | (file->color.bf);
-	// file->color.clrc = (file->color.rc << 16);
-	// file->color.clrc = file->color.clrc | (file->color.gc << 8);
-	// file->color.clrc = file->color.clrc | (file->color.bc);
 }
