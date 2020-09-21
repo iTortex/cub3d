@@ -88,4 +88,8 @@ void	draw_sprite(t_file *file)
 		sprite_while(file);
 		j++;
 	}
+	// free(file->game.spriteorder);
+	// free(file->game.sx);
+	// free(file->game.sy);
+	// free(file->game.spritedistance);
 }

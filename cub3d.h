@@ -1,4 +1,4 @@
-#include <mlx.h>
+#include "./minilibx/mlx.h"
 #include "lib/libft.h"
 #include <math.h>
 
@@ -89,6 +89,8 @@ typedef struct  s_data {
     }           t_img;
 
 typedef	struct		s_win {
+	int				pc_width;
+	int				pc_height;
 	int 			width;
 	int 			height;
 }					t_win;
@@ -112,9 +114,11 @@ typedef	struct		s_file {
 	char			**map;
 	int				fd;
 	char			*line;
+	int				stop_map;
+	int				stop_gamer;
 }					t_file;
 
-void	pars(t_file *file);
+int	pars(t_file *file);
 void	cub3d(t_file *file);
 void	maptrace(t_file *file);
 void	engine(t_file *file);
@@ -130,5 +134,5 @@ void	sprite_sort(t_file *file);
 void	makeside(t_file *file);
 void 	get_color(t_file *file);
 void	res_error(char **win);
-void	look_for_map(t_file *file);
+void		look_for_map(t_file *file);
 int		flood_fill(t_file *file);

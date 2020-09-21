@@ -69,4 +69,5 @@ void	engine(t_file *file)
 	file->game.zbuffer = ft_calloc(file->win.width + 1, sizeof(double));
 	firstwhile(file);
 	draw_sprite(file);
+	free(file->game.zbuffer);
 }

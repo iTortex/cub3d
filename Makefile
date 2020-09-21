@@ -3,7 +3,7 @@ OBJ = $(SRC:.c=.o)
 NAME = cub3d
 CC = clang
 FLAG = -Wall -Wextra -Werror
-MLX = -L./minilibx_mms_20200219 -lmlx -framework OpenGL -framework AppKit -lm -Llib -lft
+MLX = -L./minilibx -lmlx -framework OpenGL -framework AppKit -lm -Llib -lft
 
 all: $(NAME)
 
@@ -11,12 +11,14 @@ libft:
 	cd lib && make && make bonus && cp libft.a ../
 
 $(NAME): libft
-	$(CC) -g $(FLAG) $(SRC) $(MLX) $(LIBFT)
-	cd minilibx_mms_20200219 && cp libmlx.dylib ../
+	$(CC) $(FLAG) $(SRC) $(MLX) $(LIBFT)
+	# $(CC) -g $(FLAG) $(SRC) $(MLX) $(LIBFT)
+	cd minilibx && cp libmlx.dylib ../
 	cd lib && make
 
 %.o: %.c
-	$(CC) -g -Wall -Wextra -Werror -Imlx -Ilib -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -Imlx -Ilib -c $< -o $@
+	# $(CC) -g -Wall -Wextra -Werror -Imlx -Ilib -c $< -o $@
 
 clean:
 	/bin/rm -f $(OBJ)

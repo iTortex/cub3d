@@ -34,7 +34,6 @@ void	writepixel(t_img img, int i, int j)
 
 void	textures(t_file *file)
 {
-	file->img.data = (unsigned int *)mlx_get_data_addr(file->img.img, &file->img.bpp, &file->img.line_length, &file->img.endian);
 	if ((file->texn.img = mlx_xpm_file_to_image(file->img.mlx, file->sides.north, &file->game.texwidth, &file->game.texheight)) == 0)
 		mlx_error();
 	file->texn.data = (unsigned int *)mlx_get_data_addr(file->texn.img, &file->texn.bpp, &file->texn.line_length, &file->texn.endian);
@@ -61,6 +60,7 @@ void     cub3d(t_file *file)
     file->img.mlx = mlx_init();
     file->img.mlx_win = mlx_new_window(file->img.mlx, file->win.width, file->win.height, "Ya rodilsa");
     file->img.img = mlx_new_image(file->img.mlx, file->win.width, file->win.height);
+	file->img.data = (unsigned int *)mlx_get_data_addr(file->img.img, &file->img.bpp, &file->img.line_length, &file->img.endian);
 	textures(file);
 	engine(file);
 	mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);

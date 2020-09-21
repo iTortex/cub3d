@@ -3,7 +3,7 @@
 void	turn_right(t_file *file)
 {
 	mlx_clear_window(file->img.mlx, file->img.mlx_win);
-	mlx_new_image(file->img.mlx, file->win.width, file->win.height);
+	//mlx_new_image(file->img.mlx, file->win.width, file->win.height);
 	file->game.olddirx = file->game.dirx;
 	file->game.dirx = file->game.dirx * cos(-0.1) - file->game.diry * sin(-0.1);
 	file->game.diry = file->game.olddirx * sin(-0.1) + file->game.diry * cos(-0.1);
@@ -15,13 +15,13 @@ void	turn_right(t_file *file)
 	engine(file);
 	mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
 	mlx_do_sync(file->img.mlx);
-	mlx_loop(file->img.mlx);
+	// mlx_loop(file->img.mlx);
 }
 
 void	turn_left(t_file *file)
 {
 	mlx_clear_window(file->img.mlx, file->img.mlx_win);
-	mlx_new_image(file->img.mlx, file->win.width, file->win.height);
+	// mlx_new_image(file->img.mlx, file->win.width, file->win.height);
 	file->game.olddirx = file->game.dirx;
 	file->game.dirx = file->game.dirx * cos(0.1) - file->game.diry * sin(0.1);
 	file->game.diry = file->game.olddirx * sin(0.1) + file->game.diry * cos(0.1);
@@ -33,7 +33,7 @@ void	turn_left(t_file *file)
 	engine(file);
 	mlx_put_image_to_window(file->img.mlx, file->img.mlx_win, file->img.img, 0, 0);
 	mlx_do_sync(file->img.mlx);
-	mlx_loop(file->img.mlx);
+	// mlx_loop(file->img.mlx);
 }
 
 void	turn(int key, t_file *file)

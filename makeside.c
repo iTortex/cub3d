@@ -29,7 +29,7 @@ void	makeside(t_file *file)
 		side_error();
 	if (ft_strnstr(textures[0], "S", 1) != NULL)
 	{
-		if (file->sprite != NULL)
+		if (file->sprite != NULL && file->sides.south != NULL)
 			side_error();
 		if (ft_strlen(textures[0]) == 1)
 			file->sprite = ft_strdup(textures[1]);

@@ -10,6 +10,7 @@ void	win(t_file *file)
 {
 	char **win;
 
+	mlx_get_screen_size(file->img.mlx, &file->win.pc_width, &file->win.pc_height);
 	if (file->win.width != 0 || file->win.height != 0)
 		res_er();
 	win = ft_split(file->line, ' ');
@@ -18,13 +19,13 @@ void	win(t_file *file)
 	res_error(win);
 	file->win.width = ft_atoi(win[1]);
 	file->win.height = ft_atoi(win[2]);
-	free(win);
+	// free(win);
 	if (file->win.width < 1 || file->win.height < 1)
 		res_er();
-	if (file->win.height > 1080)
-		file->win.height = 1080;
-	if (file->win.width > 1920)
-		file->win.width = 1920;
+	if (file->win.height > file->win.pc_height)
+		file->win.height = file->win.pc_height;
+	if (file->win.width > file->win.pc_width)
+		file->win.width = file->win.pc_width;
 }
 
 void	timeforif(t_file *file)
@@ -43,18 +44,23 @@ void	timeforif(t_file *file)
 	ft_strnstr(side[0], "EA", 2) != NULL ||
 	ft_strnstr(side[0], "S", 1) != NULL)
 		makeside(file);
-	free(side);
+	// free(side);
 }
 
-void	pars(t_file *file)
+int	pars(t_file *file)
 {
 	int i;
-	// char *ptr;
+	int j;
 
+	j = 0;
 	i = ft_strlen(file->line);
+	if (i == 0 && file->stop_map == 1)
+		return (1);
 	if (i == 0)
-		return ;
-	// ptr = ft_strnstr(file->line, "S", i);
+		return (0);
+	if (ft_strnstr(file->line, "S", i) != NULL && file->sprite != NULL &&
+	file->sides.south != NULL)
+		look_for_map(file);
 	if (ft_strnstr(file->line, "NO", i) != NULL ||
 	ft_strnstr(file->line, "SO", i) != NULL ||
 	ft_strnstr(file->line, "WE", i) != NULL ||
@@ -65,5 +71,6 @@ void	pars(t_file *file)
 	ft_strnstr(file->line, "S", i) != NULL)
 		timeforif(file);
 	else
-		look_for_map(file);
+		 look_for_map(file);
+	return (0);
 }

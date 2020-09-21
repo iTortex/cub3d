@@ -1,23 +1,24 @@
 #include "cub3d.h"
 
+void	inv_file(void)
+{
+	write(2, "INVALID FILE\n", 13);
+	exit(0);
+}
+
+
 void	check_res(t_file *file)
 {
 	if (file->win.height == 0 || file->win.width == 0)
-	{
-		write(2, "REOSLUTION ERROR\n", 16);
-		exit(0);
-	}
+		inv_file();
 	if (file->sides.west == NULL || file->sides.north == NULL ||
 	file->sides.east == NULL || file->sides.south == NULL)
-	{
-		write(2, "SIDES ERROR\n", 11);
-		exit(0);
-	}
+		inv_file();
 	if (file->color.chc == 0 || file->color.chf == 0)
-	{
-		write(2, "COLOR ERROR\n", 12);
-		exit(0);
-	}
+		inv_file();
+	if (file->stop_map == 0)
+		inv_file();
+	
 }
 
 void	init(t_file *file)
@@ -31,6 +32,8 @@ void	init(t_file *file)
 	file->color.chc = 0;
 	file->color.chf = 0;
 	file->sprite = NULL;
+	file->stop_map = 0;
+	file->stop_gamer = 0;
 }
 
 int	main(int argc, char **argv)
@@ -39,28 +42,31 @@ int	main(int argc, char **argv)
 	char *check;
 
 	if (argc != 2)
-		return (0);
+		inv_file();
 	check = ft_substr(argv[1], ft_strlen(argv[1]) - 4, ft_strlen(argv[1]));
 	if (ft_strnstr(check, ".cub", ft_strlen(argv[1])) == NULL)
-	{
-		write(2, "INVALID FILE\n", 13);
-		free(check);
-		return (0);
-	}
+		inv_file();
+	// free(check);
 	init(&file);
 	file.first = NULL;
 	if (!(file.fd = open(argv[1], O_RDONLY)))
-		return (0);
+		inv_file();
 	while (get_next_line(file.fd, &file.line) > 0)
 	{
-		pars(&file);
+		if (pars(&file) == 1)
+			break;
 	}
 	check_res(&file);
 	look_for_map(&file);
 	maptrace(&file);
 	onlymap(&file);
-	// printf("%s\n", file.map[1]);
 	flood_fill(&file);
+	if (file.fd != 0)
+	{
+		while (get_next_line(file.fd, &file.line) > 0)
+		if (*file.line != '\0')
+			inv_file();
+	}
 	cub3d(&file);
 	// printf("%i:%i\n", file.win.width, file.win.height);
 	// printf("%i:%i:%i\n", file.color.r, file.color.g, file.color.b);

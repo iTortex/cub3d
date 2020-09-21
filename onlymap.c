@@ -13,7 +13,7 @@ static void	make_map(t_file *file)
 	while (j != i)
 	{
 		file->map[x] = ft_strdup(file->first->content);
-		printf("%s\n", file->map[x]);
+		// printf("%s\n", file->map[x]);
 		ft_bzero(file->first->content, ft_strlen(file->first->content));
 		free(file->first->content);
 		file->first = file->first->next;
@@ -22,10 +22,20 @@ static void	make_map(t_file *file)
 	}
 }
 
+void	check_gamer(t_file *file)
+{
+	if (file->stop_gamer == 1)
+	{
+		write(2, "GAMER ERROR\n", 12);
+		exit(0);
+	}
+}
+
 void	ifsides(t_file *file, int y, int x)
 {
 	if (file->map[y][x] == 'N')
 	{
+		check_gamer(file);
 		file->game.posx = y + 0.5;
 		file->game.posy = x + 0.5;
 		file->game.dirx = -1;
@@ -33,35 +43,44 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.planex = 0;
 		file->game.planey = 1;
 		file->map[y][x] = '0';
+		file->stop_gamer = 1;
 	}
 	// printf("%c\n", file->map[y][x]);
 	if (file->map[y][x] == 'S')
 	{
+		check_gamer(file);
 		file->game.posx = y + 0.5;
 		file->game.posy = x + 0.5;
 		file->game.dirx = 0;
-		file->game.diry = -1;
-		file->game.planex = -1;
+		file->game.diry = 1;
+		file->game.planex = 1;
 		file->game.planey = 0;
-		// file->map[y][x] = '0';
+		file->map[y][x] = '0';
+		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == 'W')
 	{
+		check_gamer(file);
 		file->game.posx = y + 0.5;
 		file->game.posy = x + 0.5;
 		file->game.dirx = 0;
 		file->game.diry = -1;
 		file->game.planex = -1;
 		file->game.planey = 0;
+		file->map[y][x] = '0';
+		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == 'E')
 	{
-		file->game.posx = x + 0.5;
-		file->game.posy = y + 0.5;
+		check_gamer(file);
+		file->game.posx = y + 0.5;
+		file->game.posy = x + 0.5;
 		file->game.dirx = 1;
 		file->game.diry = 0;
 		file->game.planex = 0;
 		file->game.planey = 1;
+		file->map[y][x] = '0';
+		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == '2')
 		file->spritesum += 1;
@@ -126,4 +145,24 @@ void	onlymap(t_file *file)
 			y++;
 		}
 	}
+	// while(*file->game.spriteorder)
+	// {
+	// 	free(&file->game.spriteorder);
+	// 	file->game.spriteorder++;
+	// }
+	// 	// while(*file->game.sx)
+	// 	// {
+	// 	// 	free(&file->game.sx);
+	// 	// 	file->game.sx++;
+	// 	// }
+	// while(*file->game.spritedistance)
+	// {
+	// 	free(&file->game.spritedistance);
+	// 	file->game.spritedistance++;
+	// }
+	// // while(*file->game.sy)
+	// // {
+	// // 	free(&file->game.sy);
+	// // 	file->game.sy++;
+	// // }
 }
