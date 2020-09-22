@@ -14,6 +14,8 @@ void	check_walls(char **map, int x, int y, int i, int j)
 		return ;
 	if (map[x][y] == '0' || map[x][y] == '2')
 		map[x][y] = '3';
+	if (map[x][y] == ' ')
+		map_error();
 	check_walls(map, x, y + 1, i, j);
 	check_walls(map, x, y - 1, i, j);
 	check_walls(map, x + 1, y, i, j);

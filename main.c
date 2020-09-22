@@ -54,14 +54,8 @@ int	main(int argc, char **argv)
 	while (get_next_line(file.fd, &file.line) > 0)
 	{
 		if (pars(&file) == 1)
-		{
-			free(file.line);
 			break;
-		}
-		// if (file.line)
 	}
-	if (file.line)
-		free(file.line);
 	check_res(&file);
 	look_for_map(&file);
 	maptrace(&file);

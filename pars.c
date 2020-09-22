@@ -63,9 +63,17 @@ int	pars(t_file *file)
 	if (i == 0 && file->stop_map == 1)
 	{
 		free(file->line);
+		// while (get_next_line(file->fd, &file->line) > 0)
+		// {
+		// 	if (*file->line != '\0')
+		// 	{
+		// 		write(2, "INVALID FILE\n", 13);
+		// 		exit(0);
+		// 	}
+		// }
 		return (1);
 	}
-	if (i == 0)
+	if (i == 0 && file->stop_map == 0)
 	{
 		free(file->line);
 		return (0);
