@@ -34,6 +34,7 @@ void	init(t_file *file)
 	file->sprite = NULL;
 	file->stop_map = 0;
 	file->stop_gamer = 0;
+	file->first = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -46,41 +47,26 @@ int	main(int argc, char **argv)
 	check = ft_substr(argv[1], ft_strlen(argv[1]) - 4, ft_strlen(argv[1]));
 	if (ft_strnstr(check, ".cub", ft_strlen(argv[1])) == NULL)
 		inv_file();
-	// free(check);
+	free(check);
 	init(&file);
-	file.first = NULL;
 	if (!(file.fd = open(argv[1], O_RDONLY)))
 		inv_file();
 	while (get_next_line(file.fd, &file.line) > 0)
 	{
 		if (pars(&file) == 1)
+		{
+			free(file.line);
 			break;
+		}
+		// if (file.line)
 	}
+	if (file.line)
+		free(file.line);
 	check_res(&file);
 	look_for_map(&file);
 	maptrace(&file);
 	onlymap(&file);
 	flood_fill(&file);
-	if (file.fd != 0)
-	{
-		while (get_next_line(file.fd, &file.line) > 0)
-		if (*file.line != '\0')
-			inv_file();
-	}
 	cub3d(&file);
-	// printf("%i:%i\n", file.win.width, file.win.height);
-	// printf("%i:%i:%i\n", file.color.r, file.color.g, file.color.b);
-	// printf("%i\n", 'w');
-	// printf("%s\n", file.sides.west);
-	// printf("%s\n", file.sides.south);
-	// printf("%s\n", file.sides.north);
-	// printf("%s\n", file.sides.east);
-	// printf("%s\n", file.map[4]);
-	// printf("%f\n", file.game.posx);
-	// printf("%f\n", file.game.posy);
-	// printf("%f\n", file.game.dirx);
-	// printf("%f\n", file.game.diry);
-	// printf("%f\n", file.game.planex);
-	// printf("%f\n", file.game.planey);
 	return (0);
 }

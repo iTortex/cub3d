@@ -73,7 +73,7 @@ void	draw_sprite(t_file *file)
 	j = 0;
 	while (i < file->spritesum)
 	{
-		file->game.spriteorder[i] = i;
+		// file->game.spriteorder[i] = i;
 		file->game.spritedistance[i] = ((file->game.posx - file->game.sx[i]) * (file->game.posx - file->game.sx[i]) + (file->game.posy - file->game.sy[i]) * (file->game.posy - file->game.sy[i]));
 		i++;
 	}
@@ -88,8 +88,4 @@ void	draw_sprite(t_file *file)
 		sprite_while(file);
 		j++;
 	}
-	// free(file->game.spriteorder);
-	// free(file->game.sx);
-	// free(file->game.sy);
-	// free(file->game.spritedistance);
 }

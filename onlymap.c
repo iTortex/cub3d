@@ -5,6 +5,7 @@ static void	make_map(t_file *file)
 	int i;
 	int x;
 	int j;
+	char *ptr;
 
 	j = 1;
 	x = 0;
@@ -12,11 +13,12 @@ static void	make_map(t_file *file)
 	file->map = ft_calloc(i, sizeof(char **));
 	while (j != i)
 	{
+		ptr = file->map[x];
 		file->map[x] = ft_strdup(file->first->content);
-		// printf("%s\n", file->map[x]);
-		ft_bzero(file->first->content, ft_strlen(file->first->content));
-		free(file->first->content);
+		free(ptr);
+		ft_lstdelone(file->first, free);
 		file->first = file->first->next;
+		// free(file->first->content);
 		j++;
 		x++;
 	}
@@ -120,7 +122,7 @@ void	onlymap(t_file *file)
 			y++;
 		}
 	}
-	file->game.spriteorder = ft_calloc(file->spritesum, sizeof(int));
+	// file->game.spriteorder = ft_calloc(file->spritesum, sizeof(int));
 	file->game.sx = ft_calloc(file->spritesum, sizeof(double));
 	file->game.sy = ft_calloc(file->spritesum, sizeof(double));
 	file->game.spritedistance = ft_calloc(file->spritesum, sizeof(int));
@@ -135,7 +137,7 @@ void	onlymap(t_file *file)
 			{
 				if (file->map[y][x] == '2')
 				{
-					file->game.spriteorder[i] = i;
+					// file->game.spriteorder[i] = i;
 					file->game.sx[i] = y + 0.5;
 					file->game.sy[i] = x + 0.5;
 					i++;
@@ -145,24 +147,4 @@ void	onlymap(t_file *file)
 			y++;
 		}
 	}
-	// while(*file->game.spriteorder)
-	// {
-	// 	free(&file->game.spriteorder);
-	// 	file->game.spriteorder++;
-	// }
-	// 	// while(*file->game.sx)
-	// 	// {
-	// 	// 	free(&file->game.sx);
-	// 	// 	file->game.sx++;
-	// 	// }
-	// while(*file->game.spritedistance)
-	// {
-	// 	free(&file->game.spritedistance);
-	// 	file->game.spritedistance++;
-	// }
-	// // while(*file->game.sy)
-	// // {
-	// // 	free(&file->game.sy);
-	// // 	file->game.sy++;
-	// // }
 }

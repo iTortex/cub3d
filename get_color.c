@@ -20,16 +20,18 @@ void	put_color(t_file *file, char **color)
 	if (*file->line == 'F' && file->color.chf == 0)
 	{
 		file->color.chf = 1;
-		file->color.rf = ft_atoi(color[0]);
-		file->color.gf = ft_atoi(color[1]);
-		file->color.bf = ft_atoi(color[2]);
+		file->color.rc = ft_atoi(color[0]);
+		file->color.gc = ft_atoi(color[1]);
+		file->color.bc = ft_atoi(color[2]);
+		lets_free(color);
 	}
 	else if (*file->line == 'C' && file->color.chc == 0)
 	{
 		file->color.chc = 1;
-		file->color.rc = ft_atoi(color[0]);
-		file->color.gc = ft_atoi(color[1]);
-		file->color.bc = ft_atoi(color[2]);
+		file->color.rf = ft_atoi(color[0]);
+		file->color.gf = ft_atoi(color[1]);
+		file->color.bf = ft_atoi(color[2]);
+		lets_free(color);
 	}
 	else
 		write_error();
@@ -47,6 +49,7 @@ void	color_error(char **color)
 	int i;
 	int	j;
 	int x;
+	char *ptr;
 
 	i = 0;
 	j = 0;
@@ -56,9 +59,15 @@ void	color_error(char **color)
 	if (i != 3)
 		write_error();
 	i = 0;
+	ptr = color[0];
 	color[0] = ft_strtrim(color[0], " ");
+	free(ptr);
+	ptr = color[1];
 	color[1] = ft_strtrim(color[1], " ");
+	free(ptr);
+	ptr = color[2];
 	color[2] = ft_strtrim(color[2], " ");
+	free(ptr);
 	while ((color[0][i] >= '0' && color[0][i] <= '9') || color[0][i] == '-')
 		i++;
 	while ((color[1][j] >= '0' && color[1][j] <= '9') || color[1][j] == '-')
@@ -94,7 +103,7 @@ void 	get_color(t_file *file)
 		i++;
 	ptr = (&((char *)file->line)[i]);
 	color = ft_split(ptr, ',');
-	// free(color);
 	color_error(color);
 	put_color(file, color);
+	free(color);
 }

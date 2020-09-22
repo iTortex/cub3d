@@ -42,7 +42,6 @@ int		flood_fill(t_file *file)
 	}
 	x = (int)file->game.posx;
 	y = (int)file->game.posy;
-
-	check_walls(file->map, x, y, i, max - 1);
+	check_walls(file->map, x, y, i, max);
 	return (0);
 }

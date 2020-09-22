@@ -9,7 +9,10 @@ void	side_error(void)
 char *checkside(char **texture, char *side)
 {
 	if (ft_strlen(texture[0]) == 2 && side == NULL)
-		return (side = ft_strdup(texture[1]));
+	{	
+		side = ft_strdup(texture[1]);
+		return (side);
+	}
 	else
 		side_error();
 	return (0);
@@ -37,12 +40,13 @@ void	makeside(t_file *file)
 			side_error();
 	}
 	if (ft_strnstr(textures[0], "NO", 2) != NULL)
-		 file->sides.north = checkside(textures, file->sides.north);
+		file->sides.north = checkside(textures, file->sides.north);
 	if (ft_strnstr(textures[0], "WE", 2) != NULL)
 		file->sides.west = checkside(textures, file->sides.west);
 	if (ft_strnstr(textures[0], "EA", 2) != NULL)
 		file->sides.east = checkside(textures, file->sides.east);
 	if (ft_strnstr(textures[0], "SO", 2) != NULL)
 		file->sides.south = checkside(textures, file->sides.south);
+	lets_free(textures);
 	free(textures);
 }

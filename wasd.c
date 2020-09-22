@@ -72,10 +72,6 @@ int wasd(int key, t_file *file)
 		turn(key, file);
 	if (key == 53)
     	exit(1);
-	// free(file->game.spriteorder);
-	// free(file->game.sx);
-	// free(file->game.sy);
-	// free(file->game.spritedistance);
 	// mlx_loop(file->img.mlx);
 	return(0);
 }

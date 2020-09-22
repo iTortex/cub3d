@@ -19,7 +19,8 @@ void	win(t_file *file)
 	res_error(win);
 	file->win.width = ft_atoi(win[1]);
 	file->win.height = ft_atoi(win[2]);
-	// free(win);
+	lets_free(win);
+	free(win);
 	if (file->win.width < 1 || file->win.height < 1)
 		res_er();
 	if (file->win.height > file->win.pc_height)
@@ -31,7 +32,9 @@ void	win(t_file *file)
 void	timeforif(t_file *file)
 {
 	char **side;
+	char *ptr;
 
+	ptr = file->line;
 	file->line = ft_strtrim(file->line, " ");
 	side = ft_split(file->line, ' ');
 	if (*file->line == 'R')
@@ -44,7 +47,10 @@ void	timeforif(t_file *file)
 	ft_strnstr(side[0], "EA", 2) != NULL ||
 	ft_strnstr(side[0], "S", 1) != NULL)
 		makeside(file);
-	// free(side);
+	free(ptr);
+	free(file->line);
+	lets_free(side);
+	free(side);
 }
 
 int	pars(t_file *file)
@@ -55,9 +61,15 @@ int	pars(t_file *file)
 	j = 0;
 	i = ft_strlen(file->line);
 	if (i == 0 && file->stop_map == 1)
+	{
+		free(file->line);
 		return (1);
+	}
 	if (i == 0)
+	{
+		free(file->line);
 		return (0);
+	}
 	if (ft_strnstr(file->line, "S", i) != NULL && file->sprite != NULL &&
 	file->sides.south != NULL)
 		look_for_map(file);

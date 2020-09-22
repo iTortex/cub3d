@@ -1,8 +1,8 @@
-SRC = main.c pars.c cub3d.c maptrace.c engine.c onlymap.c new_slide.c wasd.c turn.c draw.c draw_sprite.c sprite_sort.c makeside.c get_color.c res_error.c look_for_map.c flood_fill.c
+SRC = main.c pars.c cub3d.c maptrace.c engine.c onlymap.c new_slide.c wasd.c turn.c draw.c draw_sprite.c sprite_sort.c makeside.c get_color.c res_error.c look_for_map.c flood_fill.c lets_free.c
 OBJ = $(SRC:.c=.o)
 NAME = cub3d
 CC = clang
-FLAG = -Wall -Wextra -Werror
+FLAG =  -Wall -Wextra -Werror
 MLX = -L./minilibx -lmlx -framework OpenGL -framework AppKit -lm -Llib -lft
 
 all: $(NAME)

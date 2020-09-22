@@ -39,7 +39,6 @@ typedef struct	s_game {
 	double	*sx;
 	double	*sy;
 	double	*zbuffer;
-	int		*spriteorder;
 	double	*spritedistance;
 	double	spritex;
 	double	spritey;
@@ -118,7 +117,7 @@ typedef	struct		s_file {
 	int				stop_gamer;
 }					t_file;
 
-int	pars(t_file *file);
+int		pars(t_file *file);
 void	cub3d(t_file *file);
 void	maptrace(t_file *file);
 void	engine(t_file *file);
@@ -134,5 +133,6 @@ void	sprite_sort(t_file *file);
 void	makeside(t_file *file);
 void 	get_color(t_file *file);
 void	res_error(char **win);
-void		look_for_map(t_file *file);
+void	look_for_map(t_file *file);
 int		flood_fill(t_file *file);
+void	lets_free(char **str);
