@@ -10,18 +10,22 @@ static void	make_map(t_file *file)
 	j = 1;
 	x = 0;
 	i = ft_lstsize(file->first);
+	printf("%d\n", i);
 	file->map = ft_calloc(i, sizeof(char **));
 	while (j != i)
 	{
 		ptr = file->map[x];
 		file->map[x] = ft_strdup(file->first->content);
+
 		free(ptr);
+		printf("%s\n", file->first->content);
 		ft_lstdelone(file->first, free);
 		file->first = file->first->next;
-		// free(file->first->content);
 		j++;
 		x++;
 	}
+	file->map_size_y = x - 1;
+	free(file->first);
 }
 
 void	check_gamer(t_file *file)
@@ -44,7 +48,7 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = 0;
 		file->game.planex = 0;
 		file->game.planey = 1;
-		file->map[y][x] = '0';
+		// file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
 	// printf("%c\n", file->map[y][x]);
@@ -57,7 +61,7 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = 1;
 		file->game.planex = 1;
 		file->game.planey = 0;
-		file->map[y][x] = '0';
+		// file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == 'W')
@@ -69,7 +73,7 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = -1;
 		file->game.planex = -1;
 		file->game.planey = 0;
-		file->map[y][x] = '0';
+		// file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == 'E')
@@ -81,7 +85,7 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = 0;
 		file->game.planex = 0;
 		file->game.planey = 1;
-		file->map[y][x] = '0';
+		// file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == '2')
@@ -146,5 +150,6 @@ void	onlymap(t_file *file)
 			}
 			y++;
 		}
+		y = 0;
 	}
 }

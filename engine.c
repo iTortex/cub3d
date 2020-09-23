@@ -43,8 +43,8 @@ void	firstwhile(t_file *file)
 		file->game.camerax = 2 * file->ioooo / (double)file->win.width - 1;
 		file->game.raydirx = file->game.dirx + file->game.planex * file->game.camerax;
 		file->game.raydiry = file->game.diry + file->game.planey * file->game.camerax;
-		file->game.mapy = (int)file->game.posy;
 		file->game.mapx = (int)file->game.posx;
+		file->game.mapy = (int)file->game.posy;
 		file->game.deltadistx = fabs(1 / file->game.raydirx);
 		file->game.deltadisty = fabs(1 / file->game.raydiry);
 		file->game.hit = 0;

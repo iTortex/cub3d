@@ -71,7 +71,9 @@ int wasd(int key, t_file *file)
 	if (key == 124 || key == 123)
 		turn(key, file);
 	if (key == 53)
-    	exit(1);
+	{
+    	exit(0);
+	}
 	// mlx_loop(file->img.mlx);
 	return(0);
 }

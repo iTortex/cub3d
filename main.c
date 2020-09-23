@@ -42,12 +42,14 @@ int	main(int argc, char **argv)
 	t_file	file;
 	char *check;
 
-	if (argc != 2)
+	if (argc != 2 && argc != 3)
 		inv_file();
 	check = ft_substr(argv[1], ft_strlen(argv[1]) - 4, ft_strlen(argv[1]));
 	if (ft_strnstr(check, ".cub", ft_strlen(argv[1])) == NULL)
 		inv_file();
 	free(check);
+	if (argc == 3)
+		file.bmp_check = ft_strdup(argv[2]);
 	init(&file);
 	if (!(file.fd = open(argv[1], O_RDONLY)))
 		inv_file();
@@ -57,8 +59,8 @@ int	main(int argc, char **argv)
 			break;
 	}
 	check_res(&file);
-	look_for_map(&file);
 	maptrace(&file);
+	look_for_map(&file);
 	onlymap(&file);
 	flood_fill(&file);
 	cub3d(&file);

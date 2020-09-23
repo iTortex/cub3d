@@ -1,11 +1,13 @@
 #include "cub3d.h"
 
-static void            my_mlx_pixel_put(t_img *data, int x, int y, int color)
+static void            my_mlx_pixel_put(t_img *data, t_file *file,int x, int y, int color)
 {
-    unsigned int    *dst;
-
-    dst = data->data + (y * data->line_length + x * (data->bpp / 8));
-    *(unsigned int*)dst = color;
+	if (y < file->win.width && x < file->win.height)
+	{
+	    unsigned int    *dst;
+	    dst = data->data + (y * data->line_length + x * (data->bpp / 8));
+	    *(unsigned int*)dst = color;
+	}
 }
 
 static unsigned int		my_mlx_pixel_take(t_img *data, int x, int y)
@@ -36,7 +38,7 @@ void	sprite_while_next(t_file *file)
 					file->game.texy = ((file->game.d * file->game.texheight) / file->game.spriteheight) / 256;
 					file->clr = my_mlx_pixel_take(&file->sprites, file->game.texx, file->game.texy);
 					if ((file->clr & 0x00FFFFFF) != 0)
-						my_mlx_pixel_put(&file->img, stripe, yy, file->clr);
+						my_mlx_pixel_put(&file->img, file, stripe, yy, file->clr);
 					yy++;
 				}
 			}

@@ -8,5 +8,6 @@ void	maptrace(t_file *file)
 		exit(0);
 	}
 	file->stop_map = 1;
+	// printf("%s\n", file->line);
 	ft_lstadd_back(&file->first, ft_lstnew(file->line));
 }

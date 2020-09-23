@@ -81,6 +81,7 @@ typedef struct  s_data {
         void    *mlx;
         void    *mlx_win;
         void    *img;
+
         void   *data;
         int     bpp;
         int     line_length;
@@ -111,8 +112,11 @@ typedef	struct		s_file {
 	unsigned int	clr;
 	char			*sprite;
 	char			**map;
+	int				map_size_x; 
+	int				map_size_y; 
 	int				fd;
 	char			*line;
+	char			*bmp_check;
 	int				stop_map;
 	int				stop_gamer;
 }					t_file;
@@ -136,3 +140,4 @@ void	res_error(char **win);
 void	look_for_map(t_file *file);
 int		flood_fill(t_file *file);
 void	lets_free(char **str);
+void	make_bmp(t_file *file);

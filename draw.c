@@ -1,10 +1,13 @@
 #include "cub3d.h"
 
-static void            my_mlx_pixel_put(t_img *data, int x, int y, int color)
+static void            my_mlx_pixel_put(t_img *data, t_file *file,int x, int y, int color)
 {
-    unsigned int    *dst;
-    dst = data->data + (y * data->line_length + x * (data->bpp / 8));
-    *(unsigned int*)dst = color;
+	if (x < file->win.width && y < file->win.height)
+	{
+	    unsigned int    *dst;
+	    dst = data->data + (y * data->line_length + x * (data->bpp / 8));
+	    *(unsigned int*)dst = color;
+	}
 }
 
 static unsigned int		my_mlx_pixel_take(t_img *data, int x, int y)
@@ -58,7 +61,7 @@ void	drawwalls(t_file *file)
 			file->clr = my_mlx_pixel_take(&file->texs, file->game.texx, file->game.texy);
 		else if (file->game.side == 1 && file->game.raydiry >= 0)
 			file->clr = my_mlx_pixel_take(&file->texe, file->game.texx, file->game.texy);
-		my_mlx_pixel_put(&file->img, file->ioooo, file->game.drawstart, file->clr);
+		my_mlx_pixel_put(&file->img, file, file->ioooo, file->game.drawstart, file->clr);
 		file->game.drawstart++;
 	}
 }
@@ -73,12 +76,12 @@ void	draw(t_file *file)
 	y = file->game.drawend;
 	while (x < file->game.drawstart)
 	{
-		my_mlx_pixel_put(&file->img, file->ioooo, x, file->color.clrf);
+		my_mlx_pixel_put(&file->img, file, file->ioooo, x, file->color.clrf);
 		x++;
 	}
 	while (y < file->win.height)
 	{
-		my_mlx_pixel_put(&file->img, file->ioooo, y, file->color.clrc);
+		my_mlx_pixel_put(&file->img, file, file->ioooo, y, file->color.clrc);
 		y++;
 	}
 	drawwalls(file);

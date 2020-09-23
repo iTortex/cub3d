@@ -2,7 +2,7 @@ SRC = main.c pars.c cub3d.c maptrace.c engine.c onlymap.c new_slide.c wasd.c tur
 OBJ = $(SRC:.c=.o)
 NAME = cub3d
 CC = clang
-FLAG =  -Wall -Wextra -Werror
+FLAG =  -Wall -Wextra -Werror -g
 MLX = -L./minilibx -lmlx -framework OpenGL -framework AppKit -lm -Llib -lft
 
 all: $(NAME)

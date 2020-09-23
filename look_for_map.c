@@ -3,7 +3,10 @@
 void	is_it_map(t_file *file, int j)
 {
 	if (file->line[j] == '\0')
+	{	
+		free(file->line);
 		return ;
+	}
 	while (file->line[j] == '1' || file->line[j] == '0' ||
 	file->line[j] == ' ' || file->line[j] == '2' || file->line[j] == 'N' ||
 	file->line[j] == 'S' || file->line[j] == 'W' || file->line[j] == 'E')
@@ -31,4 +34,6 @@ void	look_for_map(t_file *file)
 		write(2, "DATA ERROR\n", 11);
 		exit(0);
 	}
+	// if (file->line)
+	// 	free(file->line);
 }
