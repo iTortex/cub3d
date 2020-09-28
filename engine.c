@@ -1,14 +1,14 @@
 #include "cub3d.h"
 #include <math.h>
 
-void	nextstepsecond(t_file *file)
+static void	nextstepsecond(t_file *file)
 {
 		file->game.sidedisty += file->game.deltadisty;
 		file->game.mapy += file->game.stepy;
 		file->game.side = 1;
 }
 
-void	nextstep(t_file *file)
+static void	nextstep(t_file *file)
 {
 	if (file->game.raydiry < 0)
 	{
@@ -30,17 +30,17 @@ void	nextstep(t_file *file)
 		}
 		else
 			nextstepsecond(file);
-		if (file->map[file->game.mapx][file->game.mapy] == '1')
+		if (file->map[file->game.mapx][file->game.mapy] == '1' && file->game.hit == 0)
 			file->game.hit = 1;
 	}
 	draw(file);
 }
 
-void	firstwhile(t_file *file)
+static void	firstwhile(t_file *file)
 {
 	while (file->ioooo < file->win.width)
 	{
-		file->game.camerax = 2 * file->ioooo / (double)file->win.width - 1;
+		file->game.camerax = 2 * (double)file->ioooo / (double)file->win.width - 1;
 		file->game.raydirx = file->game.dirx + file->game.planex * file->game.camerax;
 		file->game.raydiry = file->game.diry + file->game.planey * file->game.camerax;
 		file->game.mapx = (int)file->game.posx;

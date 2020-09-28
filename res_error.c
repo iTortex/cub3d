@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	mistake(void)
+static void	mistake(void)
 {
 	write(2, "RESLUTION ERROR\n", 16);
 	exit(0);

@@ -1,21 +1,27 @@
 #include "cub3d.h"
 
-void	write_error(void)
+static void	write_error(void)
 {
 	write(2, "COLOR ERROR\n", 12);
 	exit(0);
 }
 
-void	color_size(t_file *file)
+static void	color_size(t_file *file)
 {
 	if (file->color.rf < 0 || file->color.rf > 255 || file->color.gf < 0 ||
 	file->color.gf > 255 || file->color.bf < 0 || file->color.bf > 255 ||
 	file->color.rc > 255 || file->color.rc < 0 || file->color.gc > 255 ||
 	file->color.gc < 0 || file->color.bc < 0 || file->color.bc > 255)
 		write_error();
+	file->color.clrf = (file->color.rf << 16);
+	file->color.clrf = file->color.clrf | (file->color.gf << 8);
+	file->color.clrf = file->color.clrf | (file->color.bf);
+	file->color.clrc = (file->color.rc << 16);
+	file->color.clrc = file->color.clrc | (file->color.gc << 8);
+	file->color.clrc = file->color.clrc | (file->color.bc);
 }
 
-void	put_color(t_file *file, char **color)
+static void	put_color(t_file *file, char **color)
 {
 	if (*file->line == 'F' && file->color.chf == 0)
 	{
@@ -36,15 +42,9 @@ void	put_color(t_file *file, char **color)
 	else
 		write_error();
 	color_size(file);
-	file->color.clrf = (file->color.rf << 16);
-	file->color.clrf = file->color.clrf | (file->color.gf << 8);
-	file->color.clrf = file->color.clrf | (file->color.bf);
-	file->color.clrc = (file->color.rc << 16);
-	file->color.clrc = file->color.clrc | (file->color.gc << 8);
-	file->color.clrc = file->color.clrc | (file->color.bc);
 }
 
-void	color_error(char **color)
+static void	color_error(char **color)
 {
 	int i;
 	int	j;
@@ -60,13 +60,16 @@ void	color_error(char **color)
 		write_error();
 	i = 0;
 	ptr = color[0];
-	color[0] = ft_strtrim(color[0], " ");
+	if (!(color[0] = ft_strtrim(color[0], " ")))
+		write_error();
 	free(ptr);
 	ptr = color[1];
-	color[1] = ft_strtrim(color[1], " ");
+	if (!(color[1] = ft_strtrim(color[1], " ")))
+		write_error();
 	free(ptr);
 	ptr = color[2];
-	color[2] = ft_strtrim(color[2], " ");
+	if (!(color[2] = ft_strtrim(color[2], " ")))
+		write_error();
 	free(ptr);
 	while ((color[0][i] >= '0' && color[0][i] <= '9') || color[0][i] == '-')
 		i++;

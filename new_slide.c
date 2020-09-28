@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		exitt(void)
+static int		exitt(void)
 {
 		exit(0);
 		return (0);

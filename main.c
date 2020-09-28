@@ -1,13 +1,13 @@
 #include "cub3d.h"
 
-void	inv_file(void)
+static void	inv_file(void)
 {
 	write(2, "INVALID FILE\n", 13);
 	exit(0);
 }
 
 
-void	check_res(t_file *file)
+static void	check_res(t_file *file)
 {
 	if (file->win.height == 0 || file->win.width == 0)
 		inv_file();
@@ -21,7 +21,7 @@ void	check_res(t_file *file)
 	
 }
 
-void	init(t_file *file)
+static void	init(t_file *file)
 {
 	file->win.height = 0;
 	file->win.width = 0;
@@ -34,7 +34,30 @@ void	init(t_file *file)
 	file->sprite = NULL;
 	file->stop_map = 0;
 	file->stop_gamer = 0;
+	file->check_for_data = 0;
 	file->first = NULL;
+	file->map = NULL;
+	file->y_max = 0;
+	file->x_max = 0;
+}
+
+void	lets_gnl(t_file *file, int flag)
+{
+	while (get_next_line(file->fd, &file->line))
+	{
+		if (flag == 0)
+		{
+			if (pars(file) == 1)
+				flag = 1;
+		}
+		if (flag == 1)	
+			look_for_map(file);
+	}
+	look_for_map(file);
+	check_res(file);
+	onlymap(file);
+	flood_fill(file);
+	cub3d(file);
 }
 
 int	main(int argc, char **argv)
@@ -42,27 +65,25 @@ int	main(int argc, char **argv)
 	t_file	file;
 	char *check;
 
+	int flag;
+	flag = 0;
 	if (argc != 2 && argc != 3)
 		inv_file();
-	check = ft_substr(argv[1], ft_strlen(argv[1]) - 4, ft_strlen(argv[1]));
+	if (!(check = ft_substr(argv[1], ft_strlen(argv[1]) - 4, ft_strlen(argv[1]))))
+		inv_file();
 	if (ft_strnstr(check, ".cub", ft_strlen(argv[1])) == NULL)
 		inv_file();
 	free(check);
-	if (argc == 3)
-		file.bmp_check = ft_strdup(argv[2]);
 	init(&file);
+	if (argc == 3)
+	{
+		file.x_max = 1;
+		if (ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) != 0 ||
+		(ft_strlen(argv[2])) < 6)
+			inv_file();
+	}
 	if (!(file.fd = open(argv[1], O_RDONLY)))
 		inv_file();
-	while (get_next_line(file.fd, &file.line) > 0)
-	{
-		if (pars(&file) == 1)
-			break;
-	}
-	check_res(&file);
-	maptrace(&file);
-	look_for_map(&file);
-	onlymap(&file);
-	flood_fill(&file);
-	cub3d(&file);
+	lets_gnl(&file, flag);
 	return (0);
 }

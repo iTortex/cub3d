@@ -77,11 +77,11 @@ typedef struct	s_color {
 }				t_color;
 
 
-typedef struct  s_data {
+typedef struct  s_data 
+{
         void    *mlx;
         void    *mlx_win;
         void    *img;
-
         void   *data;
         int     bpp;
         int     line_length;
@@ -100,6 +100,7 @@ typedef	struct		s_file {
 	t_color			color;
 	t_win			win;
 	t_list			*first;
+	t_list			*head;
 	t_game			game;
 	t_img			img;
 	t_img			texn;
@@ -112,13 +113,15 @@ typedef	struct		s_file {
 	unsigned int	clr;
 	char			*sprite;
 	char			**map;
-	int				map_size_x; 
+	int				check_for_data; 
 	int				map_size_y; 
 	int				fd;
 	char			*line;
 	char			*bmp_check;
 	int				stop_map;
 	int				stop_gamer;
+	int				x_max;
+	int				y_max;
 }					t_file;
 
 int		pars(t_file *file);

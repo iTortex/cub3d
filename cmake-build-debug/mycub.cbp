@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="mycub"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mycub">
+				<Option output="/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/mycub" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/amarcele/Desktop/Proj/mycub/."/>
+					<Add directory="/Users/amarcele/Desktop/Proj/mycub/lib"/>
+					<Add directory="/Users/amarcele/Desktop/Proj/mycub/minilibx"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 mycub"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mycub/fast">
+				<Option output="/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/mycub" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/amarcele/Desktop/Proj/mycub/."/>
+					<Add directory="/Users/amarcele/Desktop/Proj/mycub/lib"/>
+					<Add directory="/Users/amarcele/Desktop/Proj/mycub/minilibx"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 mycub/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/amarcele/Desktop/Proj/mycub/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/cub3d.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/cub3d.h">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/draw.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/draw_sprite.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/engine.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/flood_fill.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/get_color.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lets_free.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_atoi.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_bzero.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_calloc.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_isalnum.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_isalpha.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_isascii.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_isdigit.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_isprint.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_itoa.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstadd_back.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstadd_front.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstclear.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstdelone.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstiter.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstlast.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstmap.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstnew.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_lstsize.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_memccpy.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_memchr.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_memcmp.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_memcpy.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_memmove.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_memset.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_putchar_fd.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_putendl_fd.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_putnbr_fd.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_putstr_fd.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_split.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strchr.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strdup.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strjoin.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strlcat.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strlcpy.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strlen.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strmapi.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strncmp.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strnstr.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strrchr.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_strtrim.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_substr.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_tolower.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/ft_toupper.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/get_next_line.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/lib/libft.h">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/look_for_map.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/main.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/make_bmp.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/makeside.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/maptrace.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/new_slide.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/onlymap.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/pars.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/res_error.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/sprite_sort.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/turn.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/wasd.c">
+			<Option target="mycub"/>
+		</Unit>
+		<Unit filename="/Users/amarcele/Desktop/Proj/mycub/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

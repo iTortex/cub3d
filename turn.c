@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	turn_right(t_file *file)
+static void	turn_right(t_file *file)
 {
 	mlx_clear_window(file->img.mlx, file->img.mlx_win);
 	//mlx_new_image(file->img.mlx, file->win.width, file->win.height);
@@ -18,7 +18,7 @@ void	turn_right(t_file *file)
 	// mlx_loop(file->img.mlx);
 }
 
-void	turn_left(t_file *file)
+static void	turn_left(t_file *file)
 {
 	mlx_clear_window(file->img.mlx, file->img.mlx_win);
 	// mlx_new_image(file->img.mlx, file->win.width, file->win.height);

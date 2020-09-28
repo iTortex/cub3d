@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	swap_pos(t_file *file, int i, int j)
+static void	swap_pos(t_file *file, int i, int j)
 {
 	double sx;
 	double sy;
@@ -20,7 +20,7 @@ void	sprite_sort(t_file *file)
 	double dist;
 
 	i = 0;
-	j = 1;
+	j = 0;
 	while (i < file->spritesum)
 	{
 		j = 0;

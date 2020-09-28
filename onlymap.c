@@ -4,31 +4,23 @@ static void	make_map(t_file *file)
 {
 	int i;
 	int x;
-	int j;
-	char *ptr;
 
-	j = 1;
 	x = 0;
-	i = ft_lstsize(file->first);
+	i = ft_lstsize(file->head);
 	printf("%d\n", i);
-	file->map = ft_calloc(i, sizeof(char **));
-	while (j != i)
+	if (!(file->map = malloc(sizeof(char **) * (i + 1))))
+		exit(0);
+	while (x != i)
 	{
-		ptr = file->map[x];
-		file->map[x] = ft_strdup(file->first->content);
-
-		free(ptr);
-		printf("%s\n", file->first->content);
-		ft_lstdelone(file->first, free);
+		if (!(file->map[x] = ft_strdup(file->first->content)))
+			exit(0);
 		file->first = file->first->next;
-		j++;
 		x++;
 	}
-	file->map_size_y = x - 1;
-	free(file->first);
+	file->map[i] = NULL;
 }
 
-void	check_gamer(t_file *file)
+static void	check_gamer(t_file *file)
 {
 	if (file->stop_gamer == 1)
 	{
@@ -37,7 +29,7 @@ void	check_gamer(t_file *file)
 	}
 }
 
-void	ifsides(t_file *file, int y, int x)
+static void	ifsides(t_file *file, int y, int x)
 {
 	if (file->map[y][x] == 'N')
 	{
@@ -48,10 +40,9 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = 0;
 		file->game.planex = 0;
 		file->game.planey = 1;
-		// file->map[y][x] = '0';
+		file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
-	// printf("%c\n", file->map[y][x]);
 	if (file->map[y][x] == 'S')
 	{
 		check_gamer(file);
@@ -61,7 +52,7 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = 1;
 		file->game.planex = 1;
 		file->game.planey = 0;
-		// file->map[y][x] = '0';
+		file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == 'W')
@@ -73,7 +64,7 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = -1;
 		file->game.planex = -1;
 		file->game.planey = 0;
-		// file->map[y][x] = '0';
+		file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == 'E')
@@ -85,22 +76,13 @@ void	ifsides(t_file *file, int y, int x)
 		file->game.diry = 0;
 		file->game.planex = 0;
 		file->game.planey = 1;
-		// file->map[y][x] = '0';
+		file->map[y][x] = '0';
 		file->stop_gamer = 1;
 	}
 	if (file->map[y][x] == '2')
 		file->spritesum += 1;
 }
 
-// void	ifsprite(t_file *file, int y, int x, int i)
-// {
-// 	if (file->map[y][x] == '2')
-// 	{
-// 		file->game.spriteorder[i] = i;
-// 		file->game.sx[i] = x;
-// 		file->game.sy[i] = y;
-// 	}
-// }
 
 void	onlymap(t_file *file)
 {
@@ -113,23 +95,22 @@ void	onlymap(t_file *file)
 	x = 0;
 	y = 0;
 	make_map(file);
-	if (file->map[y][x])
+	while (file->map[y])
 	{
-		while (file->map[y])
+		x = 0;
+		while (file->map[y][x])
 		{
-			x = 0;
-			while (file->map[y][x])
-			{
-				ifsides(file, y, x);
-				x++;
-			}
-			y++;
+			ifsides(file, y, x);
+			x++;
 		}
+		y++;
 	}
-	// file->game.spriteorder = ft_calloc(file->spritesum, sizeof(int));
-	file->game.sx = ft_calloc(file->spritesum, sizeof(double));
-	file->game.sy = ft_calloc(file->spritesum, sizeof(double));
-	file->game.spritedistance = ft_calloc(file->spritesum, sizeof(int));
+	if (!(file->game.sx = ft_calloc(file->spritesum + 1, sizeof(double))))
+		exit(0);
+	if (!(file->game.sy = ft_calloc(file->spritesum + 1, sizeof(double))))
+		exit(0);
+	if (!(file->game.spritedistance = ft_calloc(file->spritesum + 1, sizeof(double))))
+		exit(0);
 	x = 0;
 	y = 0;
 	if (file->map[y][x])
@@ -141,7 +122,6 @@ void	onlymap(t_file *file)
 			{
 				if (file->map[y][x] == '2')
 				{
-					// file->game.spriteorder[i] = i;
 					file->game.sx[i] = y + 0.5;
 					file->game.sy[i] = x + 0.5;
 					i++;
@@ -150,6 +130,5 @@ void	onlymap(t_file *file)
 			}
 			y++;
 		}
-		y = 0;
 	}
 }

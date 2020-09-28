@@ -1,0 +1,21 @@
+R 800 600
+
+SO ./sprites/redbrick.xpm
+
+WE ./sprites/colorstone.xpm
+
+EA ./sprites/eagle.xpm
+
+NO ./sprites/bluestone.xpm
+
+S ./sprites/greenlight.xpm
+
+C 50,150,255
+
+
+F 255,150,50
+1111
+1N21
+1221
+1011
+1111

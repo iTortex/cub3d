@@ -13,4 +13,5 @@ void	lets_free(char **str)
 		free(str[i]);
 		i++;
 	}
+	free(str[i]);
 }

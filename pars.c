@@ -1,19 +1,29 @@
 #include "cub3d.h"
 
-void	res_er(void)
+static void	check_for_data(t_file *file)
+{
+	if (file->win.width != 0 && file->win.height != 0 && file->color.clrc != 0
+	&& file->sides.east != NULL && file->sides.north != NULL 
+	&& file->sides.west != NULL && file->sides.south != NULL &&
+	file->sprite != NULL && file->color.clrf != 0)
+		file->check_for_data = 1;
+}
+
+static void	res_er(void)
 {
 	write(2, "RESLUTION ERROR\n", 16);
 	exit(0);
 }
 
-void	win(t_file *file)
+static void	win(t_file *file)
 {
 	char **win;
 
 	mlx_get_screen_size(file->img.mlx, &file->win.pc_width, &file->win.pc_height);
 	if (file->win.width != 0 || file->win.height != 0)
 		res_er();
-	win = ft_split(file->line, ' ');
+	if (!(win = ft_split(file->line, ' ')))
+		res_er();
 	if (ft_strlen(win[0]) > 1)
 		res_er();
 	res_error(win);
@@ -29,14 +39,16 @@ void	win(t_file *file)
 		file->win.width = file->win.pc_width;
 }
 
-void	timeforif(t_file *file)
+static void	timeforif(t_file *file)
 {
 	char **side;
 	char *ptr;
 
 	ptr = file->line;
-	file->line = ft_strtrim(file->line, " ");
-	side = ft_split(file->line, ' ');
+	if (!(file->line = ft_strtrim(file->line, " ")))
+		res_er();
+	if (!(side = ft_split(file->line, ' ')))
+		res_er();
 	if (*file->line == 'R')
 		win(file);
 	if (*file->line == 'F' || *file->line == 'C')
@@ -60,13 +72,11 @@ int	pars(t_file *file)
 
 	j = 0;
 	i = ft_strlen(file->line);
-	if (i == 0 && file->stop_map == 1)
-	{
-		free(file->line);
+	if (file->check_for_data == 1)
 		return (1);
-	}
 	if (i == 0 && file->stop_map == 0)
 	{
+		ft_bzero(file->line, ft_strlen((file->line)));
 		free(file->line);
 		return (0);
 	}
@@ -82,7 +92,6 @@ int	pars(t_file *file)
 	ft_strnstr(file->line, "F", i) != NULL ||
 	ft_strnstr(file->line, "S", i) != NULL)
 		timeforif(file);
-	else
-		 look_for_map(file);
+	check_for_data(file);
 	return (0);
 }

@@ -1,16 +1,17 @@
 #include "cub3d.h"
 
-void	side_error(void)
+static void	side_error(void)
 {
 	write(2, "SIDE ERROR\n", 11);
 	exit(0);
 }
 
-char *checkside(char **texture, char *side)
+static char *checkside(char **texture, char *side)
 {
 	if (ft_strlen(texture[0]) == 2 && side == NULL)
 	{	
-		side = ft_strdup(texture[1]);
+		if (!(side = ft_strdup(texture[1])))
+			side_error();
 		return (side);
 	}
 	else
@@ -25,7 +26,8 @@ void	makeside(t_file *file)
 	int i;
 
 	i = 0;
-	textures = ft_split(file->line, ' ');
+	if (!(textures = ft_split(file->line, ' ')))
+		side_error();
 	while (textures[i])
 		i++;
 	if (i != 2)

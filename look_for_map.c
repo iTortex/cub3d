@@ -1,11 +1,16 @@
 #include "cub3d.h"
 
-void	is_it_map(t_file *file, int j)
+static void	is_it_map(t_file *file)
 {
+	int j;
+
+	j = 0;
+	while (file->line[j] == ' ')
+		j++;
 	if (file->line[j] == '\0')
-	{	
-		free(file->line);
-		return ;
+	{
+		write(2, "DATA ERROR\n", 11);
+		exit(0);
 	}
 	while (file->line[j] == '1' || file->line[j] == '0' ||
 	file->line[j] == ' ' || file->line[j] == '2' || file->line[j] == 'N' ||
@@ -22,18 +27,17 @@ void	is_it_map(t_file *file, int j)
 
 void	look_for_map(t_file *file)
 {
-	int i;
-
-	i = 0;
-	while ((file->line[i] >= 9 && file->line[i] <= 13) || file->line[i] == ' ')
-		i++;
-	if (file->line[i] == '0' || file->line[i] == '1' || file->line[i] == 'S')
-		is_it_map(file, i);
-	else
+	if (*file->line == '\0' && file->stop_map == 0)
+	{
+		free(file->line);
+		return;
+	}
+	if (*file->line == '\0' && file->stop_map == 1)
 	{
 		write(2, "DATA ERROR\n", 11);
 		exit(0);
 	}
+	is_it_map(file);
 	// if (file->line)
 	// 	free(file->line);
 }

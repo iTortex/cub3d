@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/amarcele/Desktop/Proj/mycub/cub3d.c
+cub3d.h
+/Users/amarcele/Desktop/Proj/mycub/cub3d.h
+
+/Users/amarcele/Desktop/Proj/mycub/cub3d.h
+./minilibx/mlx.h
+/Users/amarcele/Desktop/Proj/mycub/minilibx/mlx.h
+lib/libft.h
+/Users/amarcele/Desktop/Proj/mycub/lib/libft.h
+math.h
+-
+
+/Users/amarcele/Desktop/Proj/mycub/draw.c
+cub3d.h
+/Users/amarcele/Desktop/Proj/mycub/cub3d.h
+
+/Users/amarcele/Desktop/Proj/mycub/engine.c
+cub3d.h
+/Users/amarcele/Desktop/Proj/mycub/cub3d.h
+math.h
+-
+
+/Users/amarcele/Desktop/Proj/mycub/lib/libft.h
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+fcntl.h
+-
+math.h
+-
+
+/Users/amarcele/Desktop/Proj/mycub/minilibx/mlx.h
+
