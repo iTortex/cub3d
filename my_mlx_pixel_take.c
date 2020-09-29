@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lets_free.c                                        :+:      :+:    :+:   */
+/*   my_mlx_pixel_take.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 14:08:02 by amarcele          #+#    #+#             */
-/*   Updated: 2020/09/29 14:08:10 by amarcele         ###   ########.fr       */
+/*   Created: 2020/09/29 13:07:17 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 14:18:12 by amarcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	lets_free(char **str)
+unsigned int		my_mlx_pixel_take(t_img *data, int x, int y)
 {
-	int i;
-	int j;
+	unsigned int	*dst;
+	unsigned int	color;
 
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str[i]);
+	dst = data->data + (y * data->line_length + x * (data->bpp / 8));
+	color = *(unsigned int*)dst;
+	return (color);
 }

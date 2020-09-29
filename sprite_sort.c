@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_sort.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/29 15:18:25 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 15:18:56 by amarcele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	swap_pos(t_file *file, int i, int j)
@@ -13,11 +25,11 @@ static void	swap_pos(t_file *file, int i, int j)
 	file->game.sy[j] = sy;
 }
 
-void	sprite_sort(t_file *file)
+void		sprite_sort(t_file *file)
 {
-	int i;
-	int j;
-	double dist;
+	int		i;
+	int		j;
+	double	dist;
 
 	i = 0;
 	j = 0;

@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lets_free.c                                        :+:      :+:    :+:   */
+/*   data_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/29 14:08:02 by amarcele          #+#    #+#             */
-/*   Updated: 2020/09/29 14:08:10 by amarcele         ###   ########.fr       */
+/*   Created: 2020/09/29 14:00:06 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 15:22:35 by amarcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	lets_free(char **str)
+void	data_error(void)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str[i]);
+	write(2, "DATA ERROR\n", 11);
+	exit(0);
 }

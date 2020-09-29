@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/29 14:19:13 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 22:29:28 by amarcele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	check_for_data(t_file *file)
 {
-	if (file->win.width != 0 && file->win.height != 0 && file->color.clrc != 0
-	&& file->sides.east != NULL && file->sides.north != NULL 
+	if (file->win.width != 0 && file->win.height != 0 && file->color.chf != 0
+	&& file->sides.east != NULL && file->sides.north != NULL
 	&& file->sides.west != NULL && file->sides.south != NULL &&
-	file->sprite != NULL && file->color.clrf != 0)
+	file->sprite != NULL && file->color.chc != 0)
 		file->check_for_data = 1;
 }
 
@@ -19,7 +31,8 @@ static void	win(t_file *file)
 {
 	char **win;
 
-	mlx_get_screen_size(file->img.mlx, &file->win.pc_width, &file->win.pc_height);
+	mlx_get_screen_size(file->img.mlx, &file->win.pc_width,
+	&file->win.pc_height);
 	if (file->win.width != 0 || file->win.height != 0)
 		res_er();
 	if (!(win = ft_split(file->line, ' ')))
@@ -53,7 +66,7 @@ static void	timeforif(t_file *file)
 		win(file);
 	if (*file->line == 'F' || *file->line == 'C')
 		get_color(file);
-	if (ft_strnstr(side[0], "NO", 2) != NULL || 
+	if (ft_strnstr(side[0], "NO", 2) != NULL ||
 	ft_strnstr(side[0], "SO", 2) != NULL ||
 	ft_strnstr(side[0], "WE", 2) != NULL ||
 	ft_strnstr(side[0], "EA", 2) != NULL ||
@@ -65,12 +78,10 @@ static void	timeforif(t_file *file)
 	free(side);
 }
 
-int	pars(t_file *file)
+int			pars(t_file *file)
 {
 	int i;
-	int j;
 
-	j = 0;
 	i = ft_strlen(file->line);
 	if (file->check_for_data == 1)
 		return (1);
@@ -92,6 +103,8 @@ int	pars(t_file *file)
 	ft_strnstr(file->line, "F", i) != NULL ||
 	ft_strnstr(file->line, "S", i) != NULL)
 		timeforif(file);
+	else
+		free(file->line);
 	check_for_data(file);
 	return (0);
 }

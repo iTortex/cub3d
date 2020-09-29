@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   look_for_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/29 14:08:51 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 20:29:45 by amarcele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	is_it_map(t_file *file)
@@ -25,12 +37,12 @@ static void	is_it_map(t_file *file)
 	}
 }
 
-void	look_for_map(t_file *file)
+void		look_for_map(t_file *file)
 {
 	if (*file->line == '\0' && file->stop_map == 0)
 	{
 		free(file->line);
-		return;
+		return ;
 	}
 	if (*file->line == '\0' && file->stop_map == 1)
 	{
@@ -38,6 +50,4 @@ void	look_for_map(t_file *file)
 		exit(0);
 	}
 	is_it_map(file);
-	// if (file->line)
-	// 	free(file->line);
 }

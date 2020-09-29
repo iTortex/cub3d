@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/29 14:09:29 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 22:27:18 by amarcele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	inv_file(void)
@@ -5,7 +17,6 @@ static void	inv_file(void)
 	write(2, "INVALID FILE\n", 13);
 	exit(0);
 }
-
 
 static void	check_res(t_file *file)
 {
@@ -18,7 +29,6 @@ static void	check_res(t_file *file)
 		inv_file();
 	if (file->stop_map == 0)
 		inv_file();
-	
 }
 
 static void	init(t_file *file)
@@ -41,7 +51,7 @@ static void	init(t_file *file)
 	file->x_max = 0;
 }
 
-void	lets_gnl(t_file *file, int flag)
+void		lets_gnl(t_file *file, int flag)
 {
 	while (get_next_line(file->fd, &file->line))
 	{
@@ -50,7 +60,7 @@ void	lets_gnl(t_file *file, int flag)
 			if (pars(file) == 1)
 				flag = 1;
 		}
-		if (flag == 1)	
+		if (flag == 1)
 			look_for_map(file);
 	}
 	look_for_map(file);
@@ -60,16 +70,17 @@ void	lets_gnl(t_file *file, int flag)
 	cub3d(file);
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_file	file;
-	char *check;
+	char	*check;
+	int		flag;
 
-	int flag;
 	flag = 0;
 	if (argc != 2 && argc != 3)
 		inv_file();
-	if (!(check = ft_substr(argv[1], ft_strlen(argv[1]) - 4, ft_strlen(argv[1]))))
+	if (!(check = ft_substr(argv[1], ft_strlen(argv[1]) - 4,
+	ft_strlen(argv[1]))))
 		inv_file();
 	if (ft_strnstr(check, ".cub", ft_strlen(argv[1])) == NULL)
 		inv_file();

@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   makeside.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/29 14:12:40 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 14:16:47 by amarcele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static void	side_error(void)
+static void		side_error(void)
 {
 	write(2, "SIDE ERROR\n", 11);
 	exit(0);
 }
 
-static char *checkside(char **texture, char *side)
+static char		*checkside(char **texture, char *side)
 {
 	if (ft_strlen(texture[0]) == 2 && side == NULL)
-	{	
+	{
 		if (!(side = ft_strdup(texture[1])))
 			side_error();
 		return (side);
@@ -19,11 +31,22 @@ static char *checkside(char **texture, char *side)
 	return (0);
 }
 
-
-void	makeside(t_file *file)
+static void		time_for_if(t_file *file, char **textures)
 {
-	char **textures;
-	int i;
+	if (ft_strnstr(textures[0], "NO", 2) != NULL)
+		file->sides.north = checkside(textures, file->sides.north);
+	if (ft_strnstr(textures[0], "WE", 2) != NULL)
+		file->sides.west = checkside(textures, file->sides.west);
+	if (ft_strnstr(textures[0], "EA", 2) != NULL)
+		file->sides.east = checkside(textures, file->sides.east);
+	if (ft_strnstr(textures[0], "SO", 2) != NULL)
+		file->sides.south = checkside(textures, file->sides.south);
+}
+
+void			makeside(t_file *file)
+{
+	char	**textures;
+	int		i;
 
 	i = 0;
 	if (!(textures = ft_split(file->line, ' ')))
@@ -41,14 +64,7 @@ void	makeside(t_file *file)
 		if (ft_strlen(textures[0]) == 2 && textures[0][1] != 'O')
 			side_error();
 	}
-	if (ft_strnstr(textures[0], "NO", 2) != NULL)
-		file->sides.north = checkside(textures, file->sides.north);
-	if (ft_strnstr(textures[0], "WE", 2) != NULL)
-		file->sides.west = checkside(textures, file->sides.west);
-	if (ft_strnstr(textures[0], "EA", 2) != NULL)
-		file->sides.east = checkside(textures, file->sides.east);
-	if (ft_strnstr(textures[0], "SO", 2) != NULL)
-		file->sides.south = checkside(textures, file->sides.south);
+	time_for_if(file, textures);
 	lets_free(textures);
 	free(textures);
 }

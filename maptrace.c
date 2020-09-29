@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   maptrace.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/29 14:17:00 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 14:17:09 by amarcele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	maptrace(t_file *file)
 {
-	static _Bool flag; 
+	static _Bool flag;
 
 	file->stop_map = 1;
 	if (file->color.chc == 0 || file->color.chf == 0)

@@ -1,20 +1,23 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_bmp.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcele <amarcele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/29 14:12:08 by amarcele          #+#    #+#             */
+/*   Updated: 2020/09/29 14:12:25 by amarcele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// void	make_res(t_file *file)
-// {
-// 	while (file->win.height % 64 != 0)
-// 		file->win.height++;
-// 	while (file->win.width % 64 != 0)
-// 		file->win.width++;
-// }
+#include "cub3d.h"
 
 void	make_bmp(t_file *file)
 {
-	char *add;
-	int memory;
-	int i;
+	char	*add;
+	int		memory;
+	int		i;
 
-	// make_res(file);
 	memory = file->win.width * file->win.height * (file->img.bpp >> 3) + 54;
 	add = ft_calloc(memory + 1, sizeof(char));
 	ft_memcpy(&add[0], "BM", 2);
